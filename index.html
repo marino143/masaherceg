@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zamisli Želju – Dječja Igraonica Samobor</title>
+  <meta name="description" content="Zamisli Želju je moderna dječja igraonica u Samoboru koja nudi nezaboravne rođendanske proslave, edukativne aktivnosti i slobodnu igru u sigurnom okruženju." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:       #f4a7c3;
+      --pink-deep:  #e07fa8;
+      --pink-light: #fce4ef;
+      --blue:       #a8d8ea;
+      --blue-deep:  #7bbcd4;
+      --blue-light: #dff0f8;
+      --lavender:   #c9b8e8;
+      --lav-light:  #ede5f9;
+      --gold:       #f7d794;
+      --gold-deep:  #e8b84b;
+      --cream:      #fff9fc;
+      --white:      #ffffff;
+      --text:       #4a3560;
+      --text-light: #8a7aa0;
+      --radius:     20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── STARS SVG ── */
+    .stars-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(255,249,252,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244,167,195,0.2);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--pink-deep);
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-logo .moon { font-style: normal; font-size: 1.1rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: var(--pink-light); color: var(--pink-deep); }
+
+    .btn-nav {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%) !important;
+      color: var(--white) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 16px rgba(244,167,195,0.4);
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,167,195,0.5) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #fde8f3 0%, #f0e8fb 35%, #dff0f8 70%, #e8f7fd 100%);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(224,127,168,0.25);
+      aspect-ratio: 3/4;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-photo-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50px;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--pink-deep);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Floating decorative shapes */
+    .deco {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+    }
+    .deco-moon-large {
+      top: 8%; right: 8%;
+      font-size: 7rem;
+      opacity: 0.18;
+      animation: float 6s ease-in-out infinite;
+    }
+    .deco-moon-small {
+      bottom: 18%; left: 6%;
+      font-size: 3.5rem;
+      opacity: 0.22;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+    .deco-star-1 { top: 15%; left: 12%; font-size: 1.4rem; opacity: 0.35; animation: twinkle 3s ease-in-out infinite; }
+    .deco-star-2 { top: 30%; right: 14%; font-size: 1rem; opacity: 0.4; animation: twinkle 4s ease-in-out infinite 1s; }
+    .deco-star-3 { bottom: 30%; right: 20%; font-size: 1.6rem; opacity: 0.3; animation: twinkle 3.5s ease-in-out infinite 0.5s; }
+    .deco-star-4 { top: 55%; left: 5%; font-size: 0.9rem; opacity: 0.35; animation: twinkle 5s ease-in-out infinite 2s; }
+    .deco-star-5 { bottom: 12%; right: 8%; font-size: 1.2rem; opacity: 0.3; animation: twinkle 4s ease-in-out infinite 0.8s; }
+    .deco-sparkle-1 { top: 22%; left: 28%; font-size: 1rem; opacity: 0.4; animation: twinkle 2.5s ease-in-out infinite 0.3s; }
+    .deco-sparkle-2 { top: 68%; right: 30%; font-size: 0.85rem; opacity: 0.35; animation: twinkle 3s ease-in-out infinite 1.5s; }
+    .deco-cloud-1 { top: 12%; left: 3%; font-size: 4rem; opacity: 0.12; animation: float 10s ease-in-out infinite; }
+    .deco-cloud-2 { bottom: 20%; right: 3%; font-size: 3rem; opacity: 0.12; animation: float 12s ease-in-out infinite reverse; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.3); opacity: 0.65; }
+    }
+
+    .hero-content { position: relative; }
+    .hero-content .hero-btns { justify-content: flex-start; }
+    .hero-content p { margin: 0 0 2.2rem; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.7);
+      border: 1.5px solid rgba(244,167,195,0.4);
+      color: var(--pink-deep);
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-content h1 .h-pink { color: var(--pink-deep); }
+    .hero-content h1 .h-blue { color: var(--blue-deep); }
+    .hero-content h1 .h-lav  { color: var(--lavender); }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink-deep) 0%, var(--lavender) 100%);
+      color: var(--white);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(224,127,168,0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(224,127,168,0.5); }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.7);
+      border: 1.5px solid rgba(244,167,195,0.5);
+      color: var(--pink-deep);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-outline:hover { background: var(--pink-light); }
+
+    /* floating stat pills */
+    .hero-pills {
+      display: flex;
+      justify-content: flex-start;
+      gap: 1rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(244,167,195,0.3);
+      border-radius: 50px;
+      padding: 0.55rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+    }
+    .pill-icon { font-size: 1rem; }
+
+    /* ── WAVE DIVIDER ── */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); padding: 80px 5%; position: relative; overflow: hidden; }
+
+    .about-deco-1 { position: absolute; top: -30px; right: -30px; font-size: 8rem; opacity: 0.05; }
+    .about-deco-2 { position: absolute; bottom: 20px; left: -20px; font-size: 6rem; opacity: 0.05; }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      border-radius: 50px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+    .section-title .accent { color: var(--pink-deep); }
+
+    .section-sub {
+      font-size: 0.98rem;
+      color: var(--text-light);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    /* pastel value cards */
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .val-card {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      transition: transform .2s;
+    }
+    .val-card:hover { transform: translateY(-3px); }
+    .val-card:nth-child(1) { border-top: 3px solid var(--pink); }
+    .val-card:nth-child(2) { border-top: 3px solid var(--blue); }
+    .val-card:nth-child(3) { border-top: 3px solid var(--lavender); }
+    .val-card:nth-child(4) { border-top: 3px solid var(--gold); }
+    .val-card:nth-child(5) { border-top: 3px solid var(--pink); }
+    .val-card:nth-child(6) { border-top: 3px solid var(--blue); }
+
+    .val-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .val-card h4 { font-size: 0.88rem; font-weight: 800; color: var(--text); margin-bottom: 0.15rem; }
+    .val-card p { font-size: 0.77rem; color: var(--text-light); }
+
+    /* about visual */
+    .about-visual {
+      position: relative;
+    }
+
+    .about-visual-box {
+      border-radius: 30px;
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 0.8rem 1.2rem;
+      box-shadow: 0 8px 30px rgba(244,167,195,0.2);
+      white-space: nowrap;
+    }
+    .about-float-card.card-1 { top: -18px; right: -18px; }
+    .about-float-card.card-2 { bottom: -18px; left: -18px; }
+    .about-float-card strong { display: block; font-size: 1.4rem; font-weight: 800; color: var(--pink-deep); line-height: 1; }
+    .about-float-card span { font-size: 0.75rem; color: var(--text-light); font-weight: 600; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); padding: 80px 5%; }
+
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services-head { margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .svc-card {
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(244,167,195,0.2); }
+
+    .svc-card:nth-child(1) { background: linear-gradient(135deg, #fce4ef, #f9d0e5); }
+    .svc-card:nth-child(2) { background: linear-gradient(135deg, #ede5f9, #ddd0f5); }
+    .svc-card:nth-child(3) { background: linear-gradient(135deg, #dff0f8, #c8e8f5); }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 100px; height: 100px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+    }
+
+    .svc-photo {
+      width: calc(100% + 4rem);
+      margin: -2rem -2rem 1.5rem;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .svc-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .svc-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .svc-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; }
+
+    /* ── GALLERY ── */
+    #galerija { background: var(--white); padding: 80px 5%; }
+    .gallery-inner { max-width: 1100px; margin: 0 auto; }
+    .gallery-head { margin-bottom: 2.5rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .gallery-grid .tall { grid-row: span 2; }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(74,53,96,0.35) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(74,53,96,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── PACKAGES ── */
+    #paketi {
+      padding: 80px 5%;
+      background: linear-gradient(160deg, #fce4ef 0%, #ede5f9 50%, #dff0f8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pkg-deco-moon { position: absolute; top: 5%; right: 3%; font-size: 6rem; opacity: 0.12; animation: float 7s ease-in-out infinite; }
+    .pkg-deco-star-1 { position: absolute; top: 15%; left: 5%; font-size: 1.5rem; opacity: 0.25; animation: twinkle 3s ease-in-out infinite; }
+    .pkg-deco-star-2 { position: absolute; bottom: 10%; right: 8%; font-size: 1.2rem; opacity: 0.25; animation: twinkle 4s ease-in-out infinite 1s; }
+    .pkg-deco-star-3 { position: absolute; bottom: 20%; left: 8%; font-size: 1rem; opacity: 0.2; animation: twinkle 5s ease-in-out infinite 0.5s; }
+
+    .packages-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+    .packages-head { margin-bottom: 3rem; }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pkg-card.princess {
+      background: linear-gradient(135deg, #ffe0f0, #f5d0ff);
+      border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 8px 40px rgba(220,100,180,0.2);
+    }
+    .pkg-card.princess .pkg-label { color: #b05090; }
+    .pkg-card.princess .pkg-price { color: #8a3070; }
+    .pkg-card.princess .pkg-dur { color: #b05090; }
+    .pkg-card.princess .pkg-list li { color: var(--text); border-color: rgba(180,80,150,0.12); }
+    .pkg-card.princess .pkg-list li::before { color: #d060a0; }
+    .pkg-card.princess .btn-pkg {
+      background: linear-gradient(135deg, #e060a8, #a050c0);
+      color: #fff;
+      border: none;
+    }
+    .pkg-card.princess .btn-pkg:hover { opacity: 0.88; }
+
+    .pkg-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(244,167,195,0.25); }
+
+    .pkg-card.featured {
+      background: linear-gradient(135deg, var(--pink-deep), var(--lavender));
+      border-color: transparent;
+      transform: scale(1.04);
+      box-shadow: 0 16px 48px rgba(224,127,168,0.35);
+    }
+    .pkg-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+
+    .pkg-popular {
+      position: absolute;
+      top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold-deep);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .pkg-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+    .pkg-card.featured .pkg-label { color: rgba(255,255,255,0.7); }
+
+    .pkg-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .pkg-card.featured .pkg-price { color: var(--white); }
+
+    .pkg-dur {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 1.4rem;
+    }
+    .pkg-card.featured .pkg-dur { color: rgba(255,255,255,0.7); }
+
+    .pkg-list { list-style: none; margin-bottom: 1.8rem; }
+    .pkg-list li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 0.38rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(74,53,96,0.07);
+    }
+    .pkg-list li:last-child { border-bottom: none; }
+    .pkg-card.featured .pkg-list li { color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.15); }
+    .pkg-list li::before { content: '✦'; flex-shrink: 0; color: var(--pink-deep); font-size: 0.65rem; margin-top: 4px; }
+    .pkg-card.featured .pkg-list li::before { color: var(--gold); }
+
+    .btn-pkg {
+      display: block;
+      text-align: center;
+      padding: 0.85rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: .2s;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      border: 1.5px solid rgba(224,127,168,0.3);
+    }
+    .btn-pkg:hover { background: var(--pink); color: var(--white); }
+
+    .pkg-card.featured .btn-pkg {
+      background: rgba(255,255,255,0.25);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .pkg-card.featured .btn-pkg:hover { background: rgba(255,255,255,0.4); }
+
+    .pkg-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      position: relative;
+    }
+    .pkg-note strong { color: var(--pink-deep); }
+
+    /* ── ACTIVITIES ── */
+    #aktivnosti { background: var(--white); padding: 80px 5%; }
+
+    .activities-inner { max-width: 1100px; margin: 0 auto; }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .act-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      border: 1.5px solid transparent;
+      transition: transform .3s, border-color .3s;
+    }
+    .act-card:hover { transform: translateY(-5px); }
+    .act-card:nth-child(1):hover { border-color: var(--pink); }
+    .act-card:nth-child(2):hover { border-color: var(--lavender); }
+    .act-card:nth-child(3):hover { border-color: var(--blue); }
+    .act-card:nth-child(4):hover { border-color: var(--gold); }
+
+    .act-emoji { font-size: 2.8rem; margin-bottom: 0.8rem; display: block; }
+    .act-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .act-card p { font-size: 0.82rem; color: var(--text-light); }
+
+    .hours-banner {
+      max-width: 520px;
+      margin: 2.5rem auto 0;
+      background: linear-gradient(135deg, #fce4ef, #ede5f9);
+      border-radius: 20px;
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hours-banner strong { font-size: 0.95rem; color: var(--text); }
+    .hours-time { color: var(--pink-deep); font-weight: 800; font-size: 0.92rem; }
+
+    /* ── CONTACT ── */
+    #kontakt { background: var(--cream); padding: 80px 5%; }
+
+    .contact-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .contact-head { margin-bottom: 3rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .c-items { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .c-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--white);
+      border-radius: 14px;
+      border: 1px solid rgba(244,167,195,0.2);
+      transition: transform .2s;
+    }
+    .c-item:hover { transform: translateX(5px); }
+
+    .c-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .c-icon.pink   { background: var(--pink-light); }
+    .c-icon.lav    { background: var(--lav-light); }
+    .c-icon.blue   { background: var(--blue-light); }
+    .c-icon.gold   { background: #fef9e7; }
+
+    .c-item h4 { font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.1rem; }
+    .c-item p, .c-item a { font-size: 0.93rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .c-item a:hover { color: var(--pink-deep); }
+
+    /* form */
+    .contact-form {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1.5px solid rgba(244,167,195,0.2);
+      box-shadow: 0 8px 40px rgba(244,167,195,0.1);
+    }
+
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-light); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(244,167,195,0.3);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--pink-deep); background: var(--white); }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+
+    .btn-send {
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-deep) 0%, var(--lavender) 100%);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+      box-shadow: 0 8px 24px rgba(224,127,168,0.35);
+    }
+    .btn-send:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.6);
+      padding: 3.5rem 5% 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆';
+      position: absolute;
+      top: 1rem; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 0.75rem;
+      opacity: 0.15;
+      letter-spacing: 0.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--pink);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+
+    .footer-col h4 { color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--pink); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { aspect-ratio: 16/9; order: -1; }
+      .hero-content .hero-btns { justify-content: center; }
+      .hero-content p { margin: 0 auto 2.2rem; }
+      .hero-pills { justify-content: center; }
+      .hero-content { text-align: center; }
+      .about-inner, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid, .packages-grid { grid-template-columns: 1fr; }
+      .pkg-card.featured { transform: scale(1); }
+      .activities-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid .tall { grid-row: span 1; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .activities-grid { grid-template-columns: 1fr 1fr; }
+      .deco-moon-large, .deco-moon-small { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="moon">🌙</span> Zamisli Želju
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">O nama</a></li>
+      <li><a href="#services">Ponude</a></li>
+      <li><a href="#paketi">Paketi</a></li>
+      <li><a href="#aktivnosti">Aktivnosti</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#kontakt" class="btn-nav">Rezerviraj odmah</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="deco deco-star-1">✦</div>
+    <div class="deco deco-star-2">⋆</div>
+    <div class="deco deco-star-4">✦</div>
+    <div class="deco deco-sparkle-1">✨</div>
+    <div class="deco deco-cloud-1">☁️</div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">🌙 Dječja Igraonica · Samobor</div>
+        <h1>
+          Mjesto gdje<br/>
+          <span class="h-pink">dječje želje</span><br/>
+          postaju <span class="h-lav">stvarnost</span>
+        </h1>
+        <p>Nezaboravne proslave, kreativne radionice i slobodna igra — sve na jednom magičnom mjestu u Samoboru.</p>
+        <div class="hero-btns">
+          <a href="#paketi" class="btn-primary">✦ Pogledaj pakete</a>
+          <a href="#kontakt" class="btn-outline">Rezerviraj odmah</a>
+        </div>
+        <div class="hero-pills">
+          <div class="pill"><span class="pill-icon">🌟</span> 200+ zadovoljnih obitelji</div>
+          <div class="pill"><span class="pill-icon">🎂</span> 3 paketa za proslave</div>
+          <div class="pill"><span class="pill-icon">⭐</span> 5★ Google ocjena</div>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="images/_MG_7303.jpg" alt="Zamisli Želju - dječja igraonica proslave" loading="eager" />
+        <div class="hero-photo-badge">✨ Samobor</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-deco-1">🌙</div>
+    <div class="about-deco-2">✦</div>
+    <div class="about-inner">
+      <div>
+        <span class="section-tag">✦ O nama</span>
+        <h2 class="section-title">Čarobni trenuci za <span class="accent">vašu djecu</span></h2>
+        <p class="section-sub">Zamisli Želju je moderna dječja igraonica u Samoboru. Naš stručni tim brine o svakom detalju kako bi djeca i roditelji uživali u posebnim trenucima punim maštovitosti i radosti.</p>
+        <div class="values-grid">
+          <div class="val-card">
+            <span class="val-icon">👩‍🏫</span>
+            <div><h4>Stručni tim</h4><p>Iskusni edukatori i animatori</p></div>
+          </div>
+          <div class="val-card">
+            <span class="val-icon">🎭</span>
+            <div><h4>Kreativni programi</h4><p>Poticajne i zabavne aktivnosti</p></div>
+          </div>
+          <div class="val-card">
+            <span class="val-icon">🛡️</span>
+            <div><h4>Sigurno okruženje</h4><p>Moderna i sigurna oprema</p></div>
+          </div>
+          <div class="val-card">
+            <span class="val-icon">🎀</span>
+            <div><h4>Personalizirane proslave</h4><p>Prilagođeno svakom djetetu</p></div>
+          </div>
+          <div class="val-card">
+            <span class="val-icon">⭐</span>
+            <div><h4>Kvaliteta usluge</h4><p>Visoki standardi na svakom koraku</p></div>
+          </div>
+          <div class="val-card">
+            <span class="val-icon">💛</span>
+            <div><h4>Zadovoljstvo klijenata</h4><p>Osmijesi koji govore sve</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-box">
+          <img src="images/_MG_7252.jpg" alt="Zamisli Želju - prostor igraonice" loading="lazy" />
+        </div>
+        <div class="about-float-card card-1">
+          <strong>200+</strong>
+          <span>Sretnih obitelji</span>
+        </div>
+        <div class="about-float-card card-2">
+          <strong>5 ★</strong>
+          <span>Google ocjena</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="services-head">
+        <span class="section-tag">✦ Što nudimo</span>
+        <h2 class="section-title">Naše <span class="accent">ponude</span></h2>
+        <p class="section-sub">Sve što vam treba za nezaboravno djetinjstvo — na jednom magičnom mjestu.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <img src="images/_MG_7291.jpg" alt="Rođendanske proslave" class="svc-photo" loading="lazy" />
+          <h3>Rođendanske proslave</h3>
+          <p>Organiziramo nezaboravne proslave za vaše dijete. Animator, hrana, dekoracija — sve uključeno u bajkovitom ambijentu.</p>
+        </div>
+        <div class="svc-card">
+          <img src="images/_MG_7261.jpg" alt="Edukativne aktivnosti" class="svc-photo" loading="lazy" />
+          <h3>Edukativne aktivnosti</h3>
+          <p>Programi koji potiču kreativnost, učenje i razvoj. Djeca uče kroz igru uz stručne voditelje.</p>
+        </div>
+        <div class="svc-card">
+          <img src="images/_MG_7257.jpg" alt="Slobodna igra" class="svc-photo" loading="lazy" />
+          <h3>Slobodna igra</h3>
+          <p>Istraži, stvaraj i igraj se! Slobodna igra u sigurnom i modernom prostoru svakodnevno.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galerija">
+    <div class="gallery-inner">
+      <div class="gallery-head">
+        <span class="section-tag">✦ Galerija</span>
+        <h2 class="section-title">Pogledaj naš <span class="accent">prostor</span></h2>
+        <p class="section-sub">Svaki kutak osmišljen je s ljubavlju — za sretnu djecu i ponosne roditelje.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item tall" onclick="openLightbox(this)">
+          <img src="images/_MG_7303.jpg" alt="Dječja igraonica - prostor za proslave" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/nova-1.jpeg" alt="Igračke - autići i traktori" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/_MG_7268.jpg" alt="Igračke i detalji" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/_MG_7295.jpg" alt="Šator za igru" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/_MG_7262.jpg" alt="Edukativne igračke" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/nova-2.jpeg" alt="Društvene igre" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/nova-3.jpeg" alt="Dječja kuhinja i igraonica" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/igra-vanjska-1.jpeg" alt="Vanjska igra - Lego kocke" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(this)">
+          <img src="images/igra-vanjska-2.jpeg" alt="Vanjska igra - aktivnosti" loading="lazy" />
+          <div class="overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- PACKAGES -->
+  <section id="paketi">
+    <div class="pkg-deco-moon">🌙</div>
+    <div class="pkg-deco-star-1">✦</div>
+    <div class="pkg-deco-star-2">✧</div>
+    <div class="pkg-deco-star-3">⋆</div>
+    <div class="packages-inner">
+      <div class="packages-head">
+        <span class="section-tag">✦ Paketi za proslave</span>
+        <h2 class="section-title">Odaberi savršeni <span class="accent">paket</span></h2>
+        <p class="section-sub">Svaki paket traje 2 sata i dolazi sa svime što treba za savršenu proslavu.</p>
+      </div>
+      <div class="packages-grid">
+
+        <div class="pkg-card">
+          <div class="pkg-label">Basic paket</div>
+          <div class="pkg-price">199 €</div>
+          <div class="pkg-dur">2 sata · sve uključeno</div>
+          <ul class="pkg-list">
+            <li>Vodstvo stručnih animatora i odgojitelja</li>
+            <li>Igre po željama djece i sportske aktivnosti</li>
+            <li>Pizza</li>
+            <li>Negazirana pića i grickalice (neograničeno)</li>
+            <li>Rođendanske pozivnice</li>
+            <li>Poklon za slavljenika i sve uzvanike</li>
+            <li>Profesionalne fotografije</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.5rem;">🎂 Torta se može dodati za <strong style="color:var(--pink-deep)">+25 €</strong></p>
+          <a href="#kontakt" class="btn-pkg" style="margin-top:1rem;">Rezerviraj</a>
+        </div>
+
+        <div class="pkg-card featured">
+          <div class="pkg-popular">🌟 Najpopularniji</div>
+          <div class="pkg-label">Simple paket</div>
+          <div class="pkg-price">299 €</div>
+          <div class="pkg-dur">2 sata · sve uključeno</div>
+          <ul class="pkg-list">
+            <li>Vodstvo stručnih animatora i odgojitelja</li>
+            <li>Odgojitelj + kineziolog</li>
+            <li>Torta i pizza</li>
+            <li>Atrakcije u prostoru (neograničeno korištenje)</li>
+            <li>Grickalice i sokovi</li>
+            <li>Poklon za slavljenika</li>
+            <li>Pozivnice</li>
+            <li>Profesionalne fotografije</li>
+          </ul>
+          <a href="#kontakt" class="btn-pkg">Rezerviraj</a>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-label">Premium paket</div>
+          <div class="pkg-price">399 €</div>
+          <div class="pkg-dur">2 sata · tematska proslava</div>
+          <ul class="pkg-list">
+            <li>Vodstvo stručnih animatora i odgojitelja</li>
+            <li>Tema po izboru: Vatrogasci, Paw Patrol, Pepa Pig, Spiderman i još mnogo tema!</li>
+            <li>Dekoracija cijelog prostora u temi</li>
+            <li>Baloni u temi + tetovaže u temi</li>
+            <li>Face painting</li>
+            <li>Torta s dekoracijom u temi + pizza</li>
+            <li>Sokovi, grickalice i kokice (neograničeno)</li>
+            <li>Pinjata</li>
+            <li>Pokloni za sve + pozivnice (digitalne i tiskane)</li>
+            <li>Protuklizne čarapice</li>
+            <li>Profesionalne fotografije</li>
+          </ul>
+          <a href="#kontakt" class="btn-pkg">Rezerviraj</a>
+        </div>
+
+        <div class="pkg-card princess">
+          <div class="pkg-popular" style="background:linear-gradient(135deg,#e060a8,#a050c0);">👑 Ekskluzivni paket</div>
+          <div class="pkg-label">Princess Party</div>
+          <div class="pkg-price" style="font-size:2rem;color:#8a3070;">Na upit</div>
+          <div class="pkg-dur">2 sata · magična proslava za male princeze</div>
+          <ul class="pkg-list">
+            <li>Vodstvo stručnih animatora i odgojitelja</li>
+            <li>Sminka za djecu</li>
+            <li>Preko 1000 dijamantića za nokte</li>
+            <li>Naljepnice za nokte + rasplice</li>
+            <li>Frizure za male princeze</li>
+            <li>Kruna i lenta za slavljenicu</li>
+            <li>Face painting</li>
+            <li>Dekoracija torte, stola i cijelog prostora</li>
+            <li>Sve igre i atrakcije uz stručno vodstvo</li>
+            <li>Pizza + torta</li>
+            <li>Kokice, grickalice i sokovi (neograničeno)</li>
+            <li>Poklon za slavljenicu i sve uzvanike</li>
+            <li>Pozivnice (digitalne i tiskane)</li>
+            <li>Profesionalne fotografije</li>
+            <li>✨ I još malo iznenađenja!</li>
+          </ul>
+          <a href="#kontakt" class="btn-pkg">Upitaj za cijenu</a>
+        </div>
+
+      </div>
+      <p class="pkg-note">🎂 Torta se može dodati uz Basic paket za <strong>+25 €</strong> · 🎨 Dostupno još mnogo tema za proslave — <strong>kontaktiraj nas!</strong></p>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="aktivnosti">
+    <div class="activities-inner">
+      <span class="section-tag">✦ Aktivnosti</span>
+      <h2 class="section-title">Više od proslave — <span class="accent">stalni programi</span></h2>
+      <p class="section-sub">Slobodna igra i radionice dostupne su svaki dan — dođi i istraži!</p>
+      <div class="activities-grid">
+        <div class="act-card">
+          <span class="act-emoji">🎨</span>
+          <h3>Slikanje</h3>
+          <p>Kreativne likovne radionice za djecu svih uzrasta</p>
+        </div>
+<div class="act-card">
+          <span class="act-emoji">✂️</span>
+          <h3>Kreativne radionice</h3>
+          <p>Izrada, smišljanje i istraživanje kroz zabavu</p>
+        </div>
+      </div>
+      <div class="hours-banner">
+        <strong>🌙 Slobodna igra — radno vrijeme</strong>
+        <span class="hours-time">Pon · Sri · Pet: 8:00 – 20:00 &nbsp;·&nbsp; Uto · Čet: 8:00 – 18:00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="contact-wrap">
+      <div class="contact-head">
+        <span class="section-tag">✦ Kontakt</span>
+        <h2 class="section-title">Rezerviraj <span class="accent">termin</span></h2>
+        <p class="section-sub">Kontaktiraj nas i zajedno ćemo organizirati savršenu proslavu za tvoje dijete!</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="c-items">
+            <div class="c-item">
+              <div class="c-icon pink">📍</div>
+              <div><h4>Lokacija</h4><p>Vlahe Bukovca 20, Samobor</p></div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon lav">📞</div>
+              <div><h4>Telefon / WhatsApp</h4><a href="tel:+38591200316">+385 91 200 0316</a></div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon blue">✉️</div>
+              <div><h4>Email</h4><a href="mailto:hercegmasa7@gmail.com">hercegmasa7@gmail.com</a></div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon gold">🕘</div>
+              <div><h4>Radno vrijeme</h4><p>Pon · Sri · Pet: 8:00–20:00 · Uto · Čet: 8:00–18:00</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>🌙 Pošalji upit za rezervaciju</h3>
+          <form>
+            <div class="form-group">
+              <label>Ime i prezime</label>
+              <input type="text" placeholder="Vaše ime i prezime" required />
+            </div>
+            <div class="form-group">
+              <label>Email adresa</label>
+              <input type="email" placeholder="vas@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Željeni paket</label>
+              <select>
+                <option value="">Odaberi paket...</option>
+                <option>Basic paket – 199 €</option>
+                <option>Simple paket – 299 €</option>
+                <option>Premium paket – 399 €</option>
+                <option>Slobodna igra / aktivnosti</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Poruka</label>
+              <textarea placeholder="Datum, broj djece, željena tema..."></textarea>
+            </div>
+            <button type="submit" class="btn-send">✦ Pošalji upit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">🌙 Zamisli Želju</a>
+        <p>Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="#about">O nama</a></li>
+          <li><a href="#services">Ponude</a></li>
+          <li><a href="#paketi">Paketi</a></li>
+          <li><a href="#aktivnosti">Aktivnosti</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Paketi</h4>
+        <ul>
+          <li><a href="#paketi">Basic – 199 €</a></li>
+          <li><a href="#paketi">Simple – 299 €</a></li>
+          <li><a href="#paketi">Premium – 399 €</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Zamisli Želju. Sva prava pridržana.</span>
+      <span>✦ Napravljeno s ljubavlju za sretnu djecu ✦</span>
+    </div>
+  </footer>
+
+  <script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
