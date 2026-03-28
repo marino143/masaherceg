@@ -3,4 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/mashercom/public_html/
     - /bin/cp -r index.html $DEPLOYPATH
+    - /bin/cp -r kontakt.php $DEPLOYPATH
     - /bin/cp -r images $DEPLOYPATH
