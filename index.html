@@ -893,6 +893,48 @@
       .deco-moon-large, .deco-moon-small { display: none; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      margin-right: 0.6rem;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: none;
+      border: 1.5px solid transparent;
+      border-radius: 50px;
+      padding: 0.3rem 0.6rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      line-height: 1;
+    }
+    .lang-btn:hover {
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      border-color: rgba(224,127,168,0.3);
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 2px 8px rgba(244,167,195,0.4);
+    }
+    .lang-sep {
+      color: rgba(122,96,112,0.3);
+      font-size: 0.75rem;
+      user-select: none;
+    }
+    @media (max-width: 640px) {
+      .lang-switcher { margin-right: 0.3rem; }
+      .lang-btn { padding: 0.28rem 0.5rem; font-size: 0.72rem; }
+    }
   </style>
 </head>
 <body>
@@ -902,13 +944,20 @@
     <a href="#" class="nav-logo">
       <span class="moon">🌙</span> Zamisli Želju
     </a>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn active" onclick="setLang('hr')" id="btn-hr">HR</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" onclick="setLang('de')" id="btn-de">DE</button>
+    </div>
     <ul class="nav-links">
-      <li><a href="#about">O nama</a></li>
-      <li><a href="#services">Ponude</a></li>
-      <li><a href="#paketi">Paketi</a></li>
-      <li><a href="#aktivnosti">Aktivnosti</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="#kontakt" class="btn-nav">Rezerviraj odmah</a></li>
+      <li><a href="#about" data-i18n="nav.about">O nama</a></li>
+      <li><a href="#services" data-i18n="nav.services">Ponude</a></li>
+      <li><a href="#paketi" data-i18n="nav.packages">Paketi</a></li>
+      <li><a href="#aktivnosti" data-i18n="nav.activities">Aktivnosti</a></li>
+      <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+      <li><a href="#kontakt" class="btn-nav" data-i18n="nav.reserve">Rezerviraj odmah</a></li>
     </ul>
   </nav>
 
@@ -922,21 +971,21 @@
 
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-badge">🌙 Dječja Igraonica · Samobor</div>
+        <div class="hero-badge">🌙 <span data-i18n="hero.badge">Dječja Igraonica · Samobor</span></div>
         <h1>
-          Mjesto gdje<br/>
-          <span class="h-pink">dječje želje</span><br/>
-          postaju <span class="h-lav">stvarnost</span>
+          <span data-i18n="hero.h1line1">Mjesto gdje</span><br/>
+          <span class="h-pink" data-i18n="hero.h1line2">dječje želje</span><br/>
+          <span data-i18n="hero.h1line3">postaju</span> <span class="h-lav" data-i18n="hero.h1line4">stvarnost</span>
         </h1>
-        <p>Nezaboravne proslave, kreativne radionice i slobodna igra — sve na jednom magičnom mjestu u Samoboru.</p>
+        <p data-i18n="hero.sub">Nezaboravne proslave, kreativne radionice i slobodna igra — sve na jednom magičnom mjestu u Samoboru.</p>
         <div class="hero-btns">
-          <a href="#paketi" class="btn-primary">✦ Pogledaj pakete</a>
-          <a href="#kontakt" class="btn-outline">Rezerviraj odmah</a>
+          <a href="#paketi" class="btn-primary" data-i18n="hero.btnPackages">✦ Pogledaj pakete</a>
+          <a href="#kontakt" class="btn-outline" data-i18n="hero.btnReserve">Rezerviraj odmah</a>
         </div>
         <div class="hero-pills">
-          <div class="pill"><span class="pill-icon">🌟</span> 200+ zadovoljnih obitelji</div>
-          <div class="pill"><span class="pill-icon">🎂</span> 3 paketa za proslave</div>
-          <div class="pill"><span class="pill-icon">⭐</span> 5★ Google ocjena</div>
+          <div class="pill"><span class="pill-icon">🌟</span> <span data-i18n="hero.pill1">200+ zadovoljnih obitelji</span></div>
+          <div class="pill"><span class="pill-icon">🎂</span> <span data-i18n="hero.pill2">3 paketa za proslave</span></div>
+          <div class="pill"><span class="pill-icon">⭐</span> <span data-i18n="hero.pill3">5★ Google ocjena</span></div>
         </div>
       </div>
       <div class="hero-photo-wrap">
@@ -957,33 +1006,33 @@
     <div class="about-deco-2">✦</div>
     <div class="about-inner">
       <div>
-        <span class="section-tag">✦ O nama</span>
-        <h2 class="section-title">Čarobni trenuci za <span class="accent">vašu djecu</span></h2>
-        <p class="section-sub">Zamisli Želju je moderna dječja igraonica u Samoboru. Naš stručni tim brine o svakom detalju kako bi djeca i roditelji uživali u posebnim trenucima punim maštovitosti i radosti.</p>
+        <span class="section-tag">✦ <span data-i18n="about.tag">O nama</span></span>
+        <h2 class="section-title"><span data-i18n="about.title">Čarobni trenuci za</span> <span class="accent" data-i18n="about.titleAccent">vašu djecu</span></h2>
+        <p class="section-sub" data-i18n="about.sub">Zamisli Želju je moderna dječja igraonica u Samoboru. Naš stručni tim brine o svakom detalju kako bi djeca i roditelji uživali u posebnim trenucima punim maštovitosti i radosti.</p>
         <div class="values-grid">
           <div class="val-card">
             <span class="val-icon">👩‍🏫</span>
-            <div><h4>Stručni tim</h4><p>Iskusni edukatori i animatori</p></div>
+            <div><h4 data-i18n="about.val1.title">Stručni tim</h4><p data-i18n="about.val1.sub">Iskusni edukatori i animatori</p></div>
           </div>
           <div class="val-card">
             <span class="val-icon">🎭</span>
-            <div><h4>Kreativni programi</h4><p>Poticajne i zabavne aktivnosti</p></div>
+            <div><h4 data-i18n="about.val2.title">Kreativni programi</h4><p data-i18n="about.val2.sub">Poticajne i zabavne aktivnosti</p></div>
           </div>
           <div class="val-card">
             <span class="val-icon">🛡️</span>
-            <div><h4>Sigurno okruženje</h4><p>Moderna i sigurna oprema</p></div>
+            <div><h4 data-i18n="about.val3.title">Sigurno okruženje</h4><p data-i18n="about.val3.sub">Moderna i sigurna oprema</p></div>
           </div>
           <div class="val-card">
             <span class="val-icon">🎀</span>
-            <div><h4>Personalizirane proslave</h4><p>Prilagođeno svakom djetetu</p></div>
+            <div><h4 data-i18n="about.val4.title">Personalizirane proslave</h4><p data-i18n="about.val4.sub">Prilagođeno svakom djetetu</p></div>
           </div>
           <div class="val-card">
             <span class="val-icon">⭐</span>
-            <div><h4>Kvaliteta usluge</h4><p>Visoki standardi na svakom koraku</p></div>
+            <div><h4 data-i18n="about.val5.title">Kvaliteta usluge</h4><p data-i18n="about.val5.sub">Visoki standardi na svakom koraku</p></div>
           </div>
           <div class="val-card">
             <span class="val-icon">💛</span>
-            <div><h4>Zadovoljstvo klijenata</h4><p>Osmijesi koji govore sve</p></div>
+            <div><h4 data-i18n="about.val6.title">Zadovoljstvo klijenata</h4><p data-i18n="about.val6.sub">Osmijesi koji govore sve</p></div>
           </div>
         </div>
       </div>
@@ -993,11 +1042,11 @@
         </div>
         <div class="about-float-card card-1">
           <strong>200+</strong>
-          <span>Sretnih obitelji</span>
+          <span data-i18n="about.floatCard1">Sretnih obitelji</span>
         </div>
         <div class="about-float-card card-2">
           <strong>5 ★</strong>
-          <span>Google ocjena</span>
+          <span data-i18n="about.floatCard2">Google ocjena</span>
         </div>
       </div>
     </div>
@@ -1007,25 +1056,25 @@
   <section id="services">
     <div class="services-inner">
       <div class="services-head">
-        <span class="section-tag">✦ Što nudimo</span>
-        <h2 class="section-title">Naše <span class="accent">ponude</span></h2>
-        <p class="section-sub">Sve što vam treba za nezaboravno djetinjstvo — na jednom magičnom mjestu.</p>
+        <span class="section-tag">✦ <span data-i18n="services.tag">Što nudimo</span></span>
+        <h2 class="section-title"><span data-i18n="services.title">Naše</span> <span class="accent" data-i18n="services.titleAccent">ponude</span></h2>
+        <p class="section-sub" data-i18n="services.sub">Sve što vam treba za nezaboravno djetinjstvo — na jednom magičnom mjestu.</p>
       </div>
       <div class="services-grid">
         <div class="svc-card">
           <img src="images/_MG_7291.jpg" alt="Rođendanske proslave" class="svc-photo" loading="lazy" />
-          <h3>Rođendanske proslave</h3>
-          <p>Organiziramo nezaboravne proslave za vaše dijete. Animator, hrana, dekoracija — sve uključeno u bajkovitom ambijentu.</p>
+          <h3 data-i18n="services.svc1.title">Rođendanske proslave</h3>
+          <p data-i18n="services.svc1.sub">Organiziramo nezaboravne proslave za vaše dijete. Animator, hrana, dekoracija — sve uključeno u bajkovitom ambijentu.</p>
         </div>
         <div class="svc-card">
           <img src="images/_MG_7261.jpg" alt="Edukativne aktivnosti" class="svc-photo" loading="lazy" />
-          <h3>Edukativne aktivnosti</h3>
-          <p>Programi koji potiču kreativnost, učenje i razvoj. Djeca uče kroz igru uz stručne voditelje.</p>
+          <h3 data-i18n="services.svc2.title">Edukativne aktivnosti</h3>
+          <p data-i18n="services.svc2.sub">Programi koji potiču kreativnost, učenje i razvoj. Djeca uče kroz igru uz stručne voditelje.</p>
         </div>
         <div class="svc-card">
           <img src="images/_MG_7257.jpg" alt="Slobodna igra" class="svc-photo" loading="lazy" />
-          <h3>Slobodna igra</h3>
-          <p>Istraži, stvaraj i igraj se! Slobodna igra u sigurnom i modernom prostoru svakodnevno.</p>
+          <h3 data-i18n="services.svc3.title">Slobodna igra</h3>
+          <p data-i18n="services.svc3.sub">Istraži, stvaraj i igraj se! Slobodna igra u sigurnom i modernom prostoru svakodnevno.</p>
         </div>
       </div>
     </div>
@@ -1035,9 +1084,9 @@
   <section id="galerija">
     <div class="gallery-inner">
       <div class="gallery-head">
-        <span class="section-tag">✦ Galerija</span>
-        <h2 class="section-title">Pogledaj naš <span class="accent">prostor</span></h2>
-        <p class="section-sub">Svaki kutak osmišljen je s ljubavlju — za sretnu djecu i ponosne roditelje.</p>
+        <span class="section-tag">✦ <span data-i18n="gallery.tag">Galerija</span></span>
+        <h2 class="section-title"><span data-i18n="gallery.title">Pogledaj naš</span> <span class="accent" data-i18n="gallery.titleAccent">prostor</span></h2>
+        <p class="section-sub" data-i18n="gallery.sub">Svaki kutak osmišljen je s ljubavlju — za sretnu djecu i ponosne roditelje.</p>
       </div>
       <div class="gallery-grid">
         <div class="gallery-item tall" onclick="openLightbox(this)">
@@ -1094,118 +1143,118 @@
     <div class="pkg-deco-star-3">⋆</div>
     <div class="packages-inner">
       <div class="packages-head">
-        <span class="section-tag">✦ Paketi za proslave</span>
-        <h2 class="section-title">Odaberi savršeni <span class="accent">paket</span></h2>
-        <p class="section-sub">Svaki paket traje 2 sata i dolazi sa svime što treba za savršenu proslavu.</p>
+        <span class="section-tag">✦ <span data-i18n="packages.tag">Paketi za proslave</span></span>
+        <h2 class="section-title"><span data-i18n="packages.title">Odaberi savršeni</span> <span class="accent" data-i18n="packages.titleAccent">paket</span></h2>
+        <p class="section-sub" data-i18n="packages.sub">Svaki paket traje 2 sata i dolazi sa svime što treba za savršenu proslavu.</p>
       </div>
       <div class="packages-grid">
 
         <div class="pkg-card">
-          <div class="pkg-label">Basic paket</div>
+          <div class="pkg-label" data-i18n="pkg.basic.label">Basic paket</div>
           <div class="pkg-price">199 €</div>
-          <div class="pkg-dur">2 sata · sve uključeno</div>
+          <div class="pkg-dur" data-i18n="pkg.basic.dur">2 sata · sve uključeno</div>
           <ul class="pkg-list">
-            <li>Vodstvo stručnih animatora i odgojitelja</li>
-            <li>Igre po željama djece i sportske aktivnosti</li>
-            <li>Pizza</li>
-            <li>Negazirana pića i grickalice (neograničeno)</li>
-            <li>Rođendanske pozivnice</li>
-            <li>Poklon za slavljenika i sve uzvanike</li>
-            <li>Profesionalne fotografije</li>
+            <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
+            <li data-i18n="pkg.basic.f2">Igre po željama djece i sportske aktivnosti</li>
+            <li data-i18n="pkg.feature.pizza">Pizza</li>
+            <li data-i18n="pkg.basic.f4">Negazirana pića i grickalice (neograničeno)</li>
+            <li data-i18n="pkg.feature.invitations">Rođendanske pozivnice</li>
+            <li data-i18n="pkg.feature.gifts">Poklon za slavljenika i sve uzvanike</li>
+            <li data-i18n="pkg.feature.photos">Profesionalne fotografije</li>
           </ul>
-          <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.5rem;">🎂 Torta se može dodati za <strong style="color:var(--pink-deep)">+25 €</strong></p>
-          <a href="#kontakt" class="btn-pkg" style="margin-top:1rem;">Rezerviraj</a>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.5rem;" data-i18n="pkg.basic.cakeNote">🎂 Torta se može dodati za <strong style="color:var(--pink-deep)">+25 €</strong></p>
+          <a href="#kontakt" class="btn-pkg" style="margin-top:1rem;" data-i18n="pkg.btnReserve">Rezerviraj</a>
         </div>
 
         <div class="pkg-card featured">
-          <div class="pkg-popular">🌟 Najpopularniji</div>
-          <div class="pkg-label">Simple paket</div>
+          <div class="pkg-popular">🌟 <span data-i18n="pkg.popular">Najpopularniji</span></div>
+          <div class="pkg-label" data-i18n="pkg.simple.label">Simple paket</div>
           <div class="pkg-price">299 €</div>
-          <div class="pkg-dur">2 sata · sve uključeno</div>
+          <div class="pkg-dur" data-i18n="pkg.simple.dur">2 sata · sve uključeno</div>
           <ul class="pkg-list">
-            <li>Vodstvo stručnih animatora i odgojitelja</li>
-            <li>Odgojitelj + kineziolog</li>
-            <li>Torta i pizza</li>
-            <li>Atrakcije u prostoru (neograničeno korištenje)</li>
-            <li>Grickalice i sokovi</li>
-            <li>Poklon za slavljenika</li>
-            <li>Pozivnice</li>
-            <li>Profesionalne fotografije</li>
+            <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
+            <li data-i18n="pkg.simple.f2">Odgojitelj + kineziolog</li>
+            <li data-i18n="pkg.simple.f3">Torta i pizza</li>
+            <li data-i18n="pkg.simple.f4">Atrakcije u prostoru (neograničeno korištenje)</li>
+            <li data-i18n="pkg.simple.f5">Grickalice i sokovi</li>
+            <li data-i18n="pkg.simple.f6">Poklon za slavljenika</li>
+            <li data-i18n="pkg.feature.invitationsShort">Pozivnice</li>
+            <li data-i18n="pkg.feature.photos">Profesionalne fotografije</li>
           </ul>
-          <a href="#kontakt" class="btn-pkg">Rezerviraj</a>
+          <a href="#kontakt" class="btn-pkg" data-i18n="pkg.btnReserve">Rezerviraj</a>
         </div>
 
         <div class="pkg-card">
-          <div class="pkg-label">Premium paket</div>
+          <div class="pkg-label" data-i18n="pkg.premium.label">Premium paket</div>
           <div class="pkg-price">399 €</div>
-          <div class="pkg-dur">2 sata · tematska proslava</div>
+          <div class="pkg-dur" data-i18n="pkg.premium.dur">2 sata · tematska proslava</div>
           <ul class="pkg-list">
-            <li>Vodstvo stručnih animatora i odgojitelja</li>
-            <li>Tema po izboru: Vatrogasci, Paw Patrol, Pepa Pig, Spiderman i još mnogo tema!</li>
-            <li>Dekoracija cijelog prostora u temi</li>
-            <li>Baloni u temi + tetovaže u temi</li>
-            <li>Face painting</li>
-            <li>Torta s dekoracijom u temi + pizza</li>
-            <li>Sokovi, grickalice i kokice (neograničeno)</li>
-            <li>Pinjata</li>
-            <li>Pokloni za sve + pozivnice (digitalne i tiskane)</li>
-            <li>Protuklizne čarapice</li>
-            <li>Profesionalne fotografije</li>
+            <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
+            <li data-i18n="pkg.premium.f2">Tema po izboru: Vatrogasci, Paw Patrol, Pepa Pig, Spiderman i još mnogo tema!</li>
+            <li data-i18n="pkg.premium.f3">Dekoracija cijelog prostora u temi</li>
+            <li data-i18n="pkg.premium.f4">Baloni u temi + tetovaže u temi</li>
+            <li data-i18n="pkg.feature.facePainting">Face painting</li>
+            <li data-i18n="pkg.premium.f6">Torta s dekoracijom u temi + pizza</li>
+            <li data-i18n="pkg.premium.f7">Sokovi, grickalice i kokice (neograničeno)</li>
+            <li data-i18n="pkg.premium.f8">Pinjata</li>
+            <li data-i18n="pkg.premium.f9">Pokloni za sve + pozivnice (digitalne i tiskane)</li>
+            <li data-i18n="pkg.premium.f10">Protuklizne čarapice</li>
+            <li data-i18n="pkg.feature.photos">Profesionalne fotografije</li>
           </ul>
-          <a href="#kontakt" class="btn-pkg">Rezerviraj</a>
+          <a href="#kontakt" class="btn-pkg" data-i18n="pkg.btnReserve">Rezerviraj</a>
         </div>
 
         <div class="pkg-card princess">
-          <div class="pkg-popular" style="background:linear-gradient(135deg,#e060a8,#a050c0);">👑 Ekskluzivni paket</div>
-          <div class="pkg-label">Princess Party</div>
-          <div class="pkg-price" style="font-size:2rem;color:#8a3070;">Na upit</div>
-          <div class="pkg-dur">2 sata · magična proslava za male princeze</div>
+          <div class="pkg-popular" style="background:linear-gradient(135deg,#e060a8,#a050c0);">👑 <span data-i18n="pkg.princess.badge">Ekskluzivni paket</span></div>
+          <div class="pkg-label" data-i18n="pkg.princess.label">Princess Party</div>
+          <div class="pkg-price" style="font-size:2rem;color:#8a3070;" data-i18n="pkg.princess.price">Na upit</div>
+          <div class="pkg-dur" data-i18n="pkg.princess.dur">2 sata · magična proslava za male princeze</div>
           <ul class="pkg-list">
-            <li>Vodstvo stručnih animatora i odgojitelja</li>
-            <li>Sminka za djecu</li>
-            <li>Preko 1000 dijamantića za nokte</li>
-            <li>Naljepnice za nokte + rasplice</li>
-            <li>Frizure za male princeze</li>
-            <li>Kruna i lenta za slavljenicu</li>
-            <li>Face painting</li>
-            <li>Dekoracija torte, stola i cijelog prostora</li>
-            <li>Sve igre i atrakcije uz stručno vodstvo</li>
-            <li>Pizza + torta</li>
-            <li>Kokice, grickalice i sokovi (neograničeno)</li>
-            <li>Poklon za slavljenicu i sve uzvanike</li>
-            <li>Pozivnice (digitalne i tiskane)</li>
-            <li>Profesionalne fotografije</li>
-            <li>✨ I još malo iznenađenja!</li>
+            <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
+            <li data-i18n="pkg.princess.f2">Sminka za djecu</li>
+            <li data-i18n="pkg.princess.f3">Preko 1000 dijamantića za nokte</li>
+            <li data-i18n="pkg.princess.f4">Naljepnice za nokte + rasplice</li>
+            <li data-i18n="pkg.princess.f5">Frizure za male princeze</li>
+            <li data-i18n="pkg.princess.f6">Kruna i lenta za slavljenicu</li>
+            <li data-i18n="pkg.feature.facePainting">Face painting</li>
+            <li data-i18n="pkg.princess.f8">Dekoracija torte, stola i cijelog prostora</li>
+            <li data-i18n="pkg.princess.f9">Sve igre i atrakcije uz stručno vodstvo</li>
+            <li data-i18n="pkg.princess.f10">Pizza + torta</li>
+            <li data-i18n="pkg.princess.f11">Kokice, grickalice i sokovi (neograničeno)</li>
+            <li data-i18n="pkg.princess.f12">Poklon za slavljenicu i sve uzvanike</li>
+            <li data-i18n="pkg.princess.f13">Pozivnice (digitalne i tiskane)</li>
+            <li data-i18n="pkg.feature.photos">Profesionalne fotografije</li>
+            <li data-i18n="pkg.princess.f15">✨ I još malo iznenađenja!</li>
           </ul>
-          <a href="#kontakt" class="btn-pkg">Upitaj za cijenu</a>
+          <a href="#kontakt" class="btn-pkg" data-i18n="pkg.princess.btnInquire">Upitaj za cijenu</a>
         </div>
 
       </div>
-      <p class="pkg-note">🎂 Torta se može dodati uz Basic paket za <strong>+25 €</strong> · 🎨 Dostupno još mnogo tema za proslave — <strong>kontaktiraj nas!</strong></p>
+      <p class="pkg-note" data-i18n="packages.note">🎂 Torta se može dodati uz Basic paket za <strong>+25 €</strong> · 🎨 Dostupno još mnogo tema za proslave — <strong>kontaktiraj nas!</strong></p>
     </div>
   </section>
 
   <!-- ACTIVITIES -->
   <section id="aktivnosti">
     <div class="activities-inner">
-      <span class="section-tag">✦ Aktivnosti</span>
-      <h2 class="section-title">Više od proslave — <span class="accent">stalni programi</span></h2>
-      <p class="section-sub">Slobodna igra i radionice dostupne su svaki dan — dođi i istraži!</p>
+      <span class="section-tag">✦ <span data-i18n="activities.tag">Aktivnosti</span></span>
+      <h2 class="section-title"><span data-i18n="activities.title">Više od proslave —</span> <span class="accent" data-i18n="activities.titleAccent">stalni programi</span></h2>
+      <p class="section-sub" data-i18n="activities.sub">Slobodna igra i radionice dostupne su svaki dan — dođi i istraži!</p>
       <div class="activities-grid">
         <div class="act-card">
           <span class="act-emoji">🎨</span>
-          <h3>Slikanje</h3>
-          <p>Kreativne likovne radionice za djecu svih uzrasta</p>
+          <h3 data-i18n="activities.act1.title">Slikanje</h3>
+          <p data-i18n="activities.act1.sub">Kreativne likovne radionice za djecu svih uzrasta</p>
         </div>
-<div class="act-card">
+        <div class="act-card">
           <span class="act-emoji">✂️</span>
-          <h3>Kreativne radionice</h3>
-          <p>Izrada, smišljanje i istraživanje kroz zabavu</p>
+          <h3 data-i18n="activities.act2.title">Kreativne radionice</h3>
+          <p data-i18n="activities.act2.sub">Izrada, smišljanje i istraživanje kroz zabavu</p>
         </div>
       </div>
       <div class="hours-banner">
-        <strong>🌙 Slobodna igra — radno vrijeme</strong>
-        <span class="hours-time">Pon · Sri · Pet: 8:00 – 20:00 &nbsp;·&nbsp; Uto · Čet: 8:00 – 18:00</span>
+        <strong data-i18n="activities.hoursLabel">🌙 Slobodna igra — radno vrijeme</strong>
+        <span class="hours-time" data-i18n="activities.hoursTime">Pon · Sri · Pet: 8:00 – 20:00 &nbsp;·&nbsp; Uto · Čet: 8:00 – 18:00</span>
       </div>
     </div>
   </section>
@@ -1214,33 +1263,33 @@
   <section id="kontakt">
     <div class="contact-wrap">
       <div class="contact-head">
-        <span class="section-tag">✦ Kontakt</span>
-        <h2 class="section-title">Rezerviraj <span class="accent">termin</span></h2>
-        <p class="section-sub">Kontaktiraj nas i zajedno ćemo organizirati savršenu proslavu za tvoje dijete!</p>
+        <span class="section-tag">✦ <span data-i18n="contact.tag">Kontakt</span></span>
+        <h2 class="section-title"><span data-i18n="contact.title">Rezerviraj</span> <span class="accent" data-i18n="contact.titleAccent">termin</span></h2>
+        <p class="section-sub" data-i18n="contact.sub">Kontaktiraj nas i zajedno ćemo organizirati savršenu proslavu za tvoje dijete!</p>
       </div>
       <div class="contact-grid">
         <div>
           <div class="c-items">
             <div class="c-item">
               <div class="c-icon pink">📍</div>
-              <div><h4>Lokacija</h4><p>Vlahe Bukovca 20, Samobor</p></div>
+              <div><h4 data-i18n="contact.location">Lokacija</h4><p>Vlahe Bukovca 20, Samobor</p></div>
             </div>
             <div class="c-item">
               <div class="c-icon lav">📞</div>
-              <div><h4>Telefon / WhatsApp</h4><a href="tel:+38591200316">+385 91 200 0316</a></div>
+              <div><h4 data-i18n="contact.phone">Telefon / WhatsApp</h4><a href="tel:+38591200316">+385 91 200 0316</a></div>
             </div>
             <div class="c-item">
               <div class="c-icon blue">✉️</div>
-              <div><h4>Email</h4><a href="mailto:hercegmasa7@gmail.com">hercegmasa7@gmail.com</a></div>
+              <div><h4 data-i18n="contact.email">Email</h4><a href="mailto:hercegmasa7@gmail.com">hercegmasa7@gmail.com</a></div>
             </div>
             <div class="c-item">
               <div class="c-icon gold">🕘</div>
-              <div><h4>Radno vrijeme</h4><p>Pon · Sri · Pet: 8:00–20:00 · Uto · Čet: 8:00–18:00</p></div>
+              <div><h4 data-i18n="contact.hours">Radno vrijeme</h4><p data-i18n="contact.hoursVal">Pon · Sri · Pet: 8:00–20:00 · Uto · Čet: 8:00–18:00</p></div>
             </div>
           </div>
         </div>
         <div class="contact-form">
-          <h3>🌙 Pošalji upit za rezervaciju</h3>
+          <h3>🌙 <span data-i18n="contact.formTitle">Pošalji upit za rezervaciju</span></h3>
 
           <div id="form-status"></div>
           <script>
@@ -1261,39 +1310,41 @@
             <input type="hidden" name="access_key" value="05d21ece-27d1-4825-9b63-dc480e0fefbf" />
             <input type="hidden" name="subject" value="Nova rezervacija — Zamisli Želju" />
             <div class="form-group">
-              <label>Ime i prezime</label>
-              <input type="text" name="ime" placeholder="Vaše ime i prezime" required />
+              <label data-i18n="form.name">Ime i prezime</label>
+              <input type="text" name="ime" placeholder="Vaše ime i prezime" data-i18n-placeholder="form.namePlaceholder" required />
             </div>
             <div class="form-group">
-              <label>Email adresa</label>
-              <input type="email" name="email" placeholder="vas@email.com" required />
+              <label data-i18n="form.email">Email adresa</label>
+              <input type="email" name="email" placeholder="vas@email.com" />
             </div>
             <div class="form-group">
-              <label>Broj telefona</label>
+              <label data-i18n="form.phone">Broj telefona</label>
               <input type="tel" name="telefon" placeholder="+385 91 234 5678" />
             </div>
             <div class="form-group">
-              <label>Željeni paket</label>
+              <label data-i18n="form.package">Željeni paket</label>
               <select name="paket">
-                <option value="">Odaberi paket...</option>
-                <option>Basic paket – 199 €</option>
-                <option>Simple paket – 299 €</option>
-                <option>Premium paket – 399 €</option>
-                <option>Slobodna igra / aktivnosti</option>
+                <option value="" data-i18n="form.packagePlaceholder">Odaberi paket...</option>
+                <option data-i18n="form.pkg1">Basic paket – 199 €</option>
+                <option data-i18n="form.pkg2">Simple paket – 299 €</option>
+                <option data-i18n="form.pkg3">Premium paket – 399 €</option>
+                <option data-i18n="form.pkg4">Slobodna igra / aktivnosti</option>
               </select>
             </div>
             <div class="form-group">
-              <label>Poruka</label>
-              <textarea name="poruka" placeholder="Datum, broj djece, željena tema..."></textarea>
+              <label data-i18n="form.message">Poruka</label>
+              <textarea name="poruka" placeholder="Datum, broj djece, željena tema..." data-i18n-placeholder="form.messagePlaceholder"></textarea>
             </div>
-            <button type="submit" id="btnSend" class="btn-send">✦ Pošalji upit</button>
+            <button type="submit" id="btnSend" class="btn-send" data-i18n="form.btnSend">✦ Pošalji upit</button>
           </form>
           <script>
             document.getElementById('kontaktForm').addEventListener('submit', async function(e) {
               e.preventDefault();
               var btn = document.getElementById('btnSend');
               var status = document.getElementById('form-status');
-              btn.textContent = 'Slanje…';
+              var sendingTxt = (typeof t === 'function') ? t('form.sending') : 'Slanje…';
+              var sendBtnTxt = (typeof t === 'function') ? t('form.btnSend') : '✦ Pošalji upit';
+              btn.textContent = sendingTxt;
               btn.disabled = true;
               try {
                 var res = await fetch('https://api.web3forms.com/submit', {
@@ -1302,15 +1353,18 @@
                 });
                 var data = await res.json();
                 if (data.success) {
-                  status.innerHTML = '<div style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">✅ Upit je uspješno poslan! Javit ćemo se što prije.</div>';
+                  var successMsg = (typeof t === 'function') ? t('form.successMsg') : '✅ Upit je uspješno poslan! Javit ćemo se što prije.';
+                  status.innerHTML = '<div style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + successMsg + '</div>';
                   this.reset();
                 } else {
-                  status.innerHTML = '<div style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">❌ Došlo je do greške. Pokušaj ponovno.</div>';
+                  var errorMsg = (typeof t === 'function') ? t('form.errorMsg') : '❌ Došlo je do greške. Pokušaj ponovno.';
+                  status.innerHTML = '<div style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + errorMsg + '</div>';
                 }
               } catch(err) {
-                status.innerHTML = '<div style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">❌ Došlo je do greške. Pokušaj ponovno.</div>';
+                var errorMsg = (typeof t === 'function') ? t('form.errorMsg') : '❌ Došlo je do greške. Pokušaj ponovno.';
+                status.innerHTML = '<div style="background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + errorMsg + '</div>';
               }
-              btn.textContent = '✦ Pošalji upit';
+              btn.textContent = sendBtnTxt;
               btn.disabled = false;
               document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
             });
@@ -1325,30 +1379,30 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#" class="footer-logo">🌙 Zamisli Želju</a>
-        <p>Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.</p>
+        <p data-i18n="footer.brandSub">Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.</p>
       </div>
       <div class="footer-col">
-        <h4>Navigacija</h4>
+        <h4 data-i18n="footer.nav">Navigacija</h4>
         <ul>
-          <li><a href="#about">O nama</a></li>
-          <li><a href="#services">Ponude</a></li>
-          <li><a href="#paketi">Paketi</a></li>
-          <li><a href="#aktivnosti">Aktivnosti</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="#about" data-i18n="nav.about">O nama</a></li>
+          <li><a href="#services" data-i18n="nav.services">Ponude</a></li>
+          <li><a href="#paketi" data-i18n="nav.packages">Paketi</a></li>
+          <li><a href="#aktivnosti" data-i18n="nav.activities">Aktivnosti</a></li>
+          <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Paketi</h4>
+        <h4 data-i18n="footer.packages">Paketi</h4>
         <ul>
           <li><a href="#paketi">Basic – 199 €</a></li>
           <li><a href="#paketi">Simple – 299 €</a></li>
           <li><a href="#paketi">Premium – 399 €</a></li>
-          <li><a href="#paketi">Princess Party – na upit</a></li>
+          <li><a href="#paketi" data-i18n="footer.princessLink">Princess Party – na upit</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 <a href="https://codigit.hr" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Co Digit</a>. Sva prava pridržana.</span>
+      <span>© 2026 <a href="https://codigit.hr" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Co Digit</a>. <span data-i18n="footer.rights">Sva prava pridržana.</span></span>
       <a href="https://www.instagram.com/zamislizelju7/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color .2s;" onmouseover="this.style.color='#f4a7c3'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         @zamislizelju7
@@ -1357,7 +1411,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         Facebook
       </a>
-      <span>✦ Napravljeno s ljubavlju za sretnu djecu ✦</span>
+      <span data-i18n="footer.madeWith">✦ Napravljeno s ljubavlju za sretnu djecu ✦</span>
     </div>
   </footer>
 
@@ -1374,6 +1428,503 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+  <!-- ── i18n TRANSLATIONS ── -->
+  <script>
+  const translations = {
+    hr: {
+      'nav.about': 'O nama',
+      'nav.services': 'Ponude',
+      'nav.packages': 'Paketi',
+      'nav.activities': 'Aktivnosti',
+      'nav.contact': 'Kontakt',
+      'nav.reserve': 'Rezerviraj odmah',
+      'hero.badge': 'Dječja Igraonica · Samobor',
+      'hero.h1line1': 'Mjesto gdje',
+      'hero.h1line2': 'dječje želje',
+      'hero.h1line3': 'postaju',
+      'hero.h1line4': 'stvarnost',
+      'hero.sub': 'Nezaboravne proslave, kreativne radionice i slobodna igra — sve na jednom magičnom mjestu u Samoboru.',
+      'hero.btnPackages': '✦ Pogledaj pakete',
+      'hero.btnReserve': 'Rezerviraj odmah',
+      'hero.pill1': '200+ zadovoljnih obitelji',
+      'hero.pill2': '3 paketa za proslave',
+      'hero.pill3': '5★ Google ocjena',
+      'about.tag': 'O nama',
+      'about.title': 'Čarobni trenuci za',
+      'about.titleAccent': 'vašu djecu',
+      'about.sub': 'Zamisli Želju je moderna dječja igraonica u Samoboru. Naš stručni tim brine o svakom detalju kako bi djeca i roditelji uživali u posebnim trenucima punim maštovitosti i radosti.',
+      'about.val1.title': 'Stručni tim',
+      'about.val1.sub': 'Iskusni edukatori i animatori',
+      'about.val2.title': 'Kreativni programi',
+      'about.val2.sub': 'Poticajne i zabavne aktivnosti',
+      'about.val3.title': 'Sigurno okruženje',
+      'about.val3.sub': 'Moderna i sigurna oprema',
+      'about.val4.title': 'Personalizirane proslave',
+      'about.val4.sub': 'Prilagođeno svakom djetetu',
+      'about.val5.title': 'Kvaliteta usluge',
+      'about.val5.sub': 'Visoki standardi na svakom koraku',
+      'about.val6.title': 'Zadovoljstvo klijenata',
+      'about.val6.sub': 'Osmijesi koji govore sve',
+      'about.floatCard1': 'Sretnih obitelji',
+      'about.floatCard2': 'Google ocjena',
+      'services.tag': 'Što nudimo',
+      'services.title': 'Naše',
+      'services.titleAccent': 'ponude',
+      'services.sub': 'Sve što vam treba za nezaboravno djetinjstvo — na jednom magičnom mjestu.',
+      'services.svc1.title': 'Rođendanske proslave',
+      'services.svc1.sub': 'Organiziramo nezaboravne proslave za vaše dijete. Animator, hrana, dekoracija — sve uključeno u bajkovitom ambijentu.',
+      'services.svc2.title': 'Edukativne aktivnosti',
+      'services.svc2.sub': 'Programi koji potiču kreativnost, učenje i razvoj. Djeca uče kroz igru uz stručne voditelje.',
+      'services.svc3.title': 'Slobodna igra',
+      'services.svc3.sub': 'Istraži, stvaraj i igraj se! Slobodna igra u sigurnom i modernom prostoru svakodnevno.',
+      'gallery.tag': 'Galerija',
+      'gallery.title': 'Pogledaj naš',
+      'gallery.titleAccent': 'prostor',
+      'gallery.sub': 'Svaki kutak osmišljen je s ljubavlju — za sretnu djecu i ponosne roditelje.',
+      'packages.tag': 'Paketi za proslave',
+      'packages.title': 'Odaberi savršeni',
+      'packages.titleAccent': 'paket',
+      'packages.sub': 'Svaki paket traje 2 sata i dolazi sa svime što treba za savršenu proslavu.',
+      'packages.note': '🎂 Torta se može dodati uz Basic paket za <strong>+25 €</strong> · 🎨 Dostupno još mnogo tema za proslave — <strong>kontaktiraj nas!</strong>',
+      'pkg.popular': 'Najpopularniji',
+      'pkg.btnReserve': 'Rezerviraj',
+      'pkg.basic.label': 'Basic paket',
+      'pkg.basic.dur': '2 sata · sve uključeno',
+      'pkg.basic.f2': 'Igre po željama djece i sportske aktivnosti',
+      'pkg.basic.f4': 'Negazirana pića i grickalice (neograničeno)',
+      'pkg.basic.cakeNote': '🎂 Torta se može dodati za <strong style="color:var(--pink-deep)">+25 €</strong>',
+      'pkg.simple.label': 'Simple paket',
+      'pkg.simple.dur': '2 sata · sve uključeno',
+      'pkg.simple.f2': 'Odgojitelj + kineziolog',
+      'pkg.simple.f3': 'Torta i pizza',
+      'pkg.simple.f4': 'Atrakcije u prostoru (neograničeno korištenje)',
+      'pkg.simple.f5': 'Grickalice i sokovi',
+      'pkg.simple.f6': 'Poklon za slavljenika',
+      'pkg.premium.label': 'Premium paket',
+      'pkg.premium.dur': '2 sata · tematska proslava',
+      'pkg.premium.f2': 'Tema po izboru: Vatrogasci, Paw Patrol, Pepa Pig, Spiderman i još mnogo tema!',
+      'pkg.premium.f3': 'Dekoracija cijelog prostora u temi',
+      'pkg.premium.f4': 'Baloni u temi + tetovaže u temi',
+      'pkg.premium.f6': 'Torta s dekoracijom u temi + pizza',
+      'pkg.premium.f7': 'Sokovi, grickalice i kokice (neograničeno)',
+      'pkg.premium.f8': 'Pinjata',
+      'pkg.premium.f9': 'Pokloni za sve + pozivnice (digitalne i tiskane)',
+      'pkg.premium.f10': 'Protuklizne čarapice',
+      'pkg.princess.badge': 'Ekskluzivni paket',
+      'pkg.princess.label': 'Princess Party',
+      'pkg.princess.price': 'Na upit',
+      'pkg.princess.dur': '2 sata · magična proslava za male princeze',
+      'pkg.princess.f2': 'Sminka za djecu',
+      'pkg.princess.f3': 'Preko 1000 dijamantića za nokte',
+      'pkg.princess.f4': 'Naljepnice za nokte + rasplice',
+      'pkg.princess.f5': 'Frizure za male princeze',
+      'pkg.princess.f6': 'Kruna i lenta za slavljenicu',
+      'pkg.princess.f8': 'Dekoracija torte, stola i cijelog prostora',
+      'pkg.princess.f9': 'Sve igre i atrakcije uz stručno vodstvo',
+      'pkg.princess.f10': 'Pizza + torta',
+      'pkg.princess.f11': 'Kokice, grickalice i sokovi (neograničeno)',
+      'pkg.princess.f12': 'Poklon za slavljenicu i sve uzvanike',
+      'pkg.princess.f13': 'Pozivnice (digitalne i tiskane)',
+      'pkg.princess.f15': '✨ I još malo iznenađenja!',
+      'pkg.princess.btnInquire': 'Upitaj za cijenu',
+      'pkg.feature.animators': 'Vodstvo stručnih animatora i odgojitelja',
+      'pkg.feature.pizza': 'Pizza',
+      'pkg.feature.invitations': 'Rođendanske pozivnice',
+      'pkg.feature.invitationsShort': 'Pozivnice',
+      'pkg.feature.gifts': 'Poklon za slavljenika i sve uzvanike',
+      'pkg.feature.photos': 'Profesionalne fotografije',
+      'pkg.feature.facePainting': 'Face painting',
+      'activities.tag': 'Aktivnosti',
+      'activities.title': 'Više od proslave —',
+      'activities.titleAccent': 'stalni programi',
+      'activities.sub': 'Slobodna igra i radionice dostupne su svaki dan — dođi i istraži!',
+      'activities.act1.title': 'Slikanje',
+      'activities.act1.sub': 'Kreativne likovne radionice za djecu svih uzrasta',
+      'activities.act2.title': 'Kreativne radionice',
+      'activities.act2.sub': 'Izrada, smišljanje i istraživanje kroz zabavu',
+      'activities.hoursLabel': '🌙 Slobodna igra — radno vrijeme',
+      'activities.hoursTime': 'Pon · Sri · Pet: 8:00 – 20:00 \u00a0·\u00a0 Uto · Čet: 8:00 – 18:00',
+      'contact.tag': 'Kontakt',
+      'contact.title': 'Rezerviraj',
+      'contact.titleAccent': 'termin',
+      'contact.sub': 'Kontaktiraj nas i zajedno ćemo organizirati savršenu proslavu za tvoje dijete!',
+      'contact.location': 'Lokacija',
+      'contact.phone': 'Telefon / WhatsApp',
+      'contact.email': 'Email',
+      'contact.hours': 'Radno vrijeme',
+      'contact.hoursVal': 'Pon · Sri · Pet: 8:00–20:00 · Uto · Čet: 8:00–18:00',
+      'contact.formTitle': 'Pošalji upit za rezervaciju',
+      'form.name': 'Ime i prezime',
+      'form.namePlaceholder': 'Vaše ime i prezime',
+      'form.email': 'Email adresa',
+      'form.phone': 'Broj telefona',
+      'form.package': 'Željeni paket',
+      'form.packagePlaceholder': 'Odaberi paket...',
+      'form.pkg1': 'Basic paket – 199 €',
+      'form.pkg2': 'Simple paket – 299 €',
+      'form.pkg3': 'Premium paket – 399 €',
+      'form.pkg4': 'Slobodna igra / aktivnosti',
+      'form.message': 'Poruka',
+      'form.messagePlaceholder': 'Datum, broj djece, željena tema...',
+      'form.btnSend': '✦ Pošalji upit',
+      'form.sending': 'Slanje…',
+      'form.successMsg': '✅ Upit je uspješno poslan! Javit ćemo se što prije.',
+      'form.errorMsg': '❌ Došlo je do greške. Pokušaj ponovno.',
+      'footer.brandSub': 'Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.',
+      'footer.nav': 'Navigacija',
+      'footer.packages': 'Paketi',
+      'footer.princessLink': 'Princess Party – na upit',
+      'footer.rights': 'Sva prava pridržana.',
+      'footer.madeWith': '✦ Napravljeno s ljubavlju za sretnu djecu ✦',
+    },
+    en: {
+      'nav.about': 'About us',
+      'nav.services': 'Services',
+      'nav.packages': 'Packages',
+      'nav.activities': 'Activities',
+      'nav.contact': 'Contact',
+      'nav.reserve': 'Book now',
+      'hero.badge': 'Children\'s Play Centre · Samobor',
+      'hero.h1line1': 'The place where',
+      'hero.h1line2': 'children\'s wishes',
+      'hero.h1line3': 'become',
+      'hero.h1line4': 'reality',
+      'hero.sub': 'Unforgettable birthday parties, creative workshops and free play — all in one magical place in Samobor.',
+      'hero.btnPackages': '✦ View packages',
+      'hero.btnReserve': 'Book now',
+      'hero.pill1': '200+ happy families',
+      'hero.pill2': '3 party packages',
+      'hero.pill3': '5★ Google rating',
+      'about.tag': 'About us',
+      'about.title': 'Magical moments for',
+      'about.titleAccent': 'your children',
+      'about.sub': 'Zamisli Želju is a modern children\'s play centre in Samobor. Our expert team takes care of every detail so that children and parents can enjoy special moments full of imagination and joy.',
+      'about.val1.title': 'Expert team',
+      'about.val1.sub': 'Experienced educators and animators',
+      'about.val2.title': 'Creative programmes',
+      'about.val2.sub': 'Inspiring and fun activities',
+      'about.val3.title': 'Safe environment',
+      'about.val3.sub': 'Modern and safe equipment',
+      'about.val4.title': 'Personalised parties',
+      'about.val4.sub': 'Tailored to every child',
+      'about.val5.title': 'Quality service',
+      'about.val5.sub': 'High standards at every step',
+      'about.val6.title': 'Happy clients',
+      'about.val6.sub': 'Smiles that say it all',
+      'about.floatCard1': 'Happy families',
+      'about.floatCard2': 'Google rating',
+      'services.tag': 'What we offer',
+      'services.title': 'Our',
+      'services.titleAccent': 'services',
+      'services.sub': 'Everything you need for an unforgettable childhood — in one magical place.',
+      'services.svc1.title': 'Birthday parties',
+      'services.svc1.sub': 'We organise unforgettable parties for your child. Animator, food, decoration — all included in a fairy-tale setting.',
+      'services.svc2.title': 'Educational activities',
+      'services.svc2.sub': 'Programmes that stimulate creativity, learning and development. Children learn through play with expert guides.',
+      'services.svc3.title': 'Free play',
+      'services.svc3.sub': 'Explore, create and play! Free play in a safe and modern space every day.',
+      'gallery.tag': 'Gallery',
+      'gallery.title': 'Take a look at our',
+      'gallery.titleAccent': 'space',
+      'gallery.sub': 'Every corner designed with love — for happy children and proud parents.',
+      'packages.tag': 'Party packages',
+      'packages.title': 'Choose the perfect',
+      'packages.titleAccent': 'package',
+      'packages.sub': 'Each package lasts 2 hours and comes with everything needed for the perfect celebration.',
+      'packages.note': '🎂 A cake can be added to the Basic package for <strong>+25 €</strong> · 🎨 Many more party themes available — <strong>contact us!</strong>',
+      'pkg.popular': 'Most popular',
+      'pkg.btnReserve': 'Book',
+      'pkg.basic.label': 'Basic package',
+      'pkg.basic.dur': '2 hours · all inclusive',
+      'pkg.basic.f2': 'Games of the children\'s choice and sports activities',
+      'pkg.basic.f4': 'Still drinks and snacks (unlimited)',
+      'pkg.basic.cakeNote': '🎂 A cake can be added for <strong style="color:var(--pink-deep)">+25 €</strong>',
+      'pkg.simple.label': 'Simple package',
+      'pkg.simple.dur': '2 hours · all inclusive',
+      'pkg.simple.f2': 'Educator + kinesiologist',
+      'pkg.simple.f3': 'Cake and pizza',
+      'pkg.simple.f4': 'Venue attractions (unlimited use)',
+      'pkg.simple.f5': 'Snacks and juices',
+      'pkg.simple.f6': 'Gift for the birthday child',
+      'pkg.premium.label': 'Premium package',
+      'pkg.premium.dur': '2 hours · themed party',
+      'pkg.premium.f2': 'Theme of your choice: Firefighters, Paw Patrol, Peppa Pig, Spiderman and many more!',
+      'pkg.premium.f3': 'Full venue decoration in your chosen theme',
+      'pkg.premium.f4': 'Theme balloons + theme tattoos',
+      'pkg.premium.f6': 'Themed decorated cake + pizza',
+      'pkg.premium.f7': 'Juices, snacks and popcorn (unlimited)',
+      'pkg.premium.f8': 'Piñata',
+      'pkg.premium.f9': 'Gifts for all guests + invitations (digital and printed)',
+      'pkg.premium.f10': 'Anti-slip socks',
+      'pkg.princess.badge': 'Exclusive package',
+      'pkg.princess.label': 'Princess Party',
+      'pkg.princess.price': 'On request',
+      'pkg.princess.dur': '2 hours · magical party for little princesses',
+      'pkg.princess.f2': 'Make-up for children',
+      'pkg.princess.f3': 'Over 1000 nail diamonds',
+      'pkg.princess.f4': 'Nail stickers + hair accessories',
+      'pkg.princess.f5': 'Hairstyles for little princesses',
+      'pkg.princess.f6': 'Crown and sash for the birthday girl',
+      'pkg.princess.f8': 'Cake, table and full venue decoration',
+      'pkg.princess.f9': 'All games and attractions with expert guidance',
+      'pkg.princess.f10': 'Pizza + cake',
+      'pkg.princess.f11': 'Popcorn, snacks and juices (unlimited)',
+      'pkg.princess.f12': 'Gift for the birthday girl and all guests',
+      'pkg.princess.f13': 'Invitations (digital and printed)',
+      'pkg.princess.f15': '✨ And a few more surprises!',
+      'pkg.princess.btnInquire': 'Ask for price',
+      'pkg.feature.animators': 'Expert animators and educators',
+      'pkg.feature.pizza': 'Pizza',
+      'pkg.feature.invitations': 'Birthday invitations',
+      'pkg.feature.invitationsShort': 'Invitations',
+      'pkg.feature.gifts': 'Gift for the birthday child and all guests',
+      'pkg.feature.photos': 'Professional photos',
+      'pkg.feature.facePainting': 'Face painting',
+      'activities.tag': 'Activities',
+      'activities.title': 'More than a party —',
+      'activities.titleAccent': 'regular programmes',
+      'activities.sub': 'Free play and workshops available every day — come and explore!',
+      'activities.act1.title': 'Painting',
+      'activities.act1.sub': 'Creative art workshops for children of all ages',
+      'activities.act2.title': 'Creative workshops',
+      'activities.act2.sub': 'Making, imagining and exploring through fun',
+      'activities.hoursLabel': '🌙 Free play — opening hours',
+      'activities.hoursTime': 'Mon · Wed · Fri: 8:00 – 20:00 \u00a0·\u00a0 Tue · Thu: 8:00 – 18:00',
+      'contact.tag': 'Contact',
+      'contact.title': 'Book a',
+      'contact.titleAccent': 'date',
+      'contact.sub': 'Contact us and together we will organise the perfect party for your child!',
+      'contact.location': 'Location',
+      'contact.phone': 'Phone / WhatsApp',
+      'contact.email': 'Email',
+      'contact.hours': 'Opening hours',
+      'contact.hoursVal': 'Mon · Wed · Fri: 8:00–20:00 · Tue · Thu: 8:00–18:00',
+      'contact.formTitle': 'Send a booking enquiry',
+      'form.name': 'Full name',
+      'form.namePlaceholder': 'Your full name',
+      'form.email': 'Email address',
+      'form.phone': 'Phone number',
+      'form.package': 'Desired package',
+      'form.packagePlaceholder': 'Choose a package...',
+      'form.pkg1': 'Basic package – 199 €',
+      'form.pkg2': 'Simple package – 299 €',
+      'form.pkg3': 'Premium package – 399 €',
+      'form.pkg4': 'Free play / activities',
+      'form.message': 'Message',
+      'form.messagePlaceholder': 'Date, number of children, desired theme...',
+      'form.btnSend': '✦ Send enquiry',
+      'form.sending': 'Sending…',
+      'form.successMsg': '✅ Your enquiry was sent successfully! We will get back to you shortly.',
+      'form.errorMsg': '❌ An error occurred. Please try again.',
+      'footer.brandSub': 'A modern children\'s play centre in Samobor. Unforgettable parties, educational activities and free play in a safe environment.',
+      'footer.nav': 'Navigation',
+      'footer.packages': 'Packages',
+      'footer.princessLink': 'Princess Party – on request',
+      'footer.rights': 'All rights reserved.',
+      'footer.madeWith': '✦ Made with love for happy children ✦',
+    },
+    de: {
+      'nav.about': 'Über uns',
+      'nav.services': 'Angebote',
+      'nav.packages': 'Pakete',
+      'nav.activities': 'Aktivitäten',
+      'nav.contact': 'Kontakt',
+      'nav.reserve': 'Jetzt buchen',
+      'hero.badge': 'Kinderspielzentrum · Samobor',
+      'hero.h1line1': 'Der Ort, wo',
+      'hero.h1line2': 'Kinderwünsche',
+      'hero.h1line3': 'zur',
+      'hero.h1line4': 'Wirklichkeit werden',
+      'hero.sub': 'Unvergessliche Geburtstagsfeiern, kreative Workshops und freies Spielen — alles an einem magischen Ort in Samobor.',
+      'hero.btnPackages': '✦ Pakete ansehen',
+      'hero.btnReserve': 'Jetzt buchen',
+      'hero.pill1': '200+ glückliche Familien',
+      'hero.pill2': '3 Feier-Pakete',
+      'hero.pill3': '5★ Google-Bewertung',
+      'about.tag': 'Über uns',
+      'about.title': 'Magische Momente für',
+      'about.titleAccent': 'Ihre Kinder',
+      'about.sub': 'Zamisli Želju ist ein modernes Kinderspielzentrum in Samobor. Unser Expertenteam kümmert sich um jedes Detail, damit Kinder und Eltern besondere Momente voller Fantasie und Freude genießen können.',
+      'about.val1.title': 'Expertenteam',
+      'about.val1.sub': 'Erfahrene Pädagogen und Animateure',
+      'about.val2.title': 'Kreative Programme',
+      'about.val2.sub': 'Anregende und spaßige Aktivitäten',
+      'about.val3.title': 'Sichere Umgebung',
+      'about.val3.sub': 'Moderne und sichere Ausstattung',
+      'about.val4.title': 'Personalisierte Feiern',
+      'about.val4.sub': 'Auf jedes Kind zugeschnitten',
+      'about.val5.title': 'Qualitätsservice',
+      'about.val5.sub': 'Hohe Standards bei jedem Schritt',
+      'about.val6.title': 'Zufriedene Kunden',
+      'about.val6.sub': 'Lächeln, die alles sagen',
+      'about.floatCard1': 'Glückliche Familien',
+      'about.floatCard2': 'Google-Bewertung',
+      'services.tag': 'Was wir anbieten',
+      'services.title': 'Unsere',
+      'services.titleAccent': 'Angebote',
+      'services.sub': 'Alles, was Sie für eine unvergessliche Kindheit brauchen — an einem magischen Ort.',
+      'services.svc1.title': 'Geburtstagsfeiern',
+      'services.svc1.sub': 'Wir organisieren unvergessliche Feiern für Ihr Kind. Animateur, Essen, Dekoration — alles inklusive in märchenhafter Atmosphäre.',
+      'services.svc2.title': 'Bildungsaktivitäten',
+      'services.svc2.sub': 'Programme, die Kreativität, Lernen und Entwicklung fördern. Kinder lernen durch Spielen mit fachkundiger Begleitung.',
+      'services.svc3.title': 'Freies Spielen',
+      'services.svc3.sub': 'Erkunden, kreieren und spielen! Freies Spielen in einem sicheren und modernen Raum täglich.',
+      'gallery.tag': 'Galerie',
+      'gallery.title': 'Entdecken Sie unseren',
+      'gallery.titleAccent': 'Raum',
+      'gallery.sub': 'Jede Ecke mit Liebe gestaltet — für glückliche Kinder und stolze Eltern.',
+      'packages.tag': 'Feier-Pakete',
+      'packages.title': 'Wählen Sie das perfekte',
+      'packages.titleAccent': 'Paket',
+      'packages.sub': 'Jedes Paket dauert 2 Stunden und enthält alles, was für eine perfekte Feier benötigt wird.',
+      'packages.note': '🎂 Eine Torte kann zum Basic-Paket für <strong>+25 €</strong> hinzugefügt werden · 🎨 Viele weitere Feier-Themen verfügbar — <strong>kontaktieren Sie uns!</strong>',
+      'pkg.popular': 'Am beliebtesten',
+      'pkg.btnReserve': 'Buchen',
+      'pkg.basic.label': 'Basic-Paket',
+      'pkg.basic.dur': '2 Stunden · alles inklusive',
+      'pkg.basic.f2': 'Spiele nach Wunsch der Kinder und Sportaktivitäten',
+      'pkg.basic.f4': 'Stilles Wasser und Snacks (unbegrenzt)',
+      'pkg.basic.cakeNote': '🎂 Eine Torte kann für <strong style="color:var(--pink-deep)">+25 €</strong> hinzugefügt werden',
+      'pkg.simple.label': 'Simple-Paket',
+      'pkg.simple.dur': '2 Stunden · alles inklusive',
+      'pkg.simple.f2': 'Pädagoge + Kinesiologin',
+      'pkg.simple.f3': 'Torte und Pizza',
+      'pkg.simple.f4': 'Attraktionen im Raum (unbegrenzte Nutzung)',
+      'pkg.simple.f5': 'Snacks und Säfte',
+      'pkg.simple.f6': 'Geschenk für das Geburtstagskind',
+      'pkg.premium.label': 'Premium-Paket',
+      'pkg.premium.dur': '2 Stunden · Themenfeier',
+      'pkg.premium.f2': 'Thema nach Wahl: Feuerwehrmänner, Paw Patrol, Peppa Pig, Spiderman und viele mehr!',
+      'pkg.premium.f3': 'Komplette Raumdekoration im gewählten Thema',
+      'pkg.premium.f4': 'Themen-Luftballons + Themen-Tattoos',
+      'pkg.premium.f6': 'Themendekoration Torte + Pizza',
+      'pkg.premium.f7': 'Säfte, Snacks und Popcorn (unbegrenzt)',
+      'pkg.premium.f8': 'Piñata',
+      'pkg.premium.f9': 'Geschenke für alle + Einladungen (digital und gedruckt)',
+      'pkg.premium.f10': 'Antirutsch-Socken',
+      'pkg.princess.badge': 'Exklusives Paket',
+      'pkg.princess.label': 'Princess Party',
+      'pkg.princess.price': 'Auf Anfrage',
+      'pkg.princess.dur': '2 Stunden · magische Feier für kleine Prinzessinnen',
+      'pkg.princess.f2': 'Make-up für Kinder',
+      'pkg.princess.f3': 'Über 1000 Nageldiamanten',
+      'pkg.princess.f4': 'Nagelsticker + Haaraccessoires',
+      'pkg.princess.f5': 'Frisuren für kleine Prinzessinnen',
+      'pkg.princess.f6': 'Krone und Schärpe für das Geburtstagskind',
+      'pkg.princess.f8': 'Deko für Torte, Tisch und gesamten Raum',
+      'pkg.princess.f9': 'Alle Spiele und Attraktionen mit fachkundiger Begleitung',
+      'pkg.princess.f10': 'Pizza + Torte',
+      'pkg.princess.f11': 'Popcorn, Snacks und Säfte (unbegrenzt)',
+      'pkg.princess.f12': 'Geschenk für das Geburtstagskind und alle Gäste',
+      'pkg.princess.f13': 'Einladungen (digital und gedruckt)',
+      'pkg.princess.f15': '✨ Und noch ein paar Überraschungen!',
+      'pkg.princess.btnInquire': 'Nach Preis fragen',
+      'pkg.feature.animators': 'Leitung durch erfahrene Animateure und Pädagogen',
+      'pkg.feature.pizza': 'Pizza',
+      'pkg.feature.invitations': 'Geburtstagseinladungen',
+      'pkg.feature.invitationsShort': 'Einladungen',
+      'pkg.feature.gifts': 'Geschenk für das Geburtstagskind und alle Gäste',
+      'pkg.feature.photos': 'Professionelle Fotos',
+      'pkg.feature.facePainting': 'Schminken (Face painting)',
+      'activities.tag': 'Aktivitäten',
+      'activities.title': 'Mehr als eine Feier —',
+      'activities.titleAccent': 'regelmäßige Programme',
+      'activities.sub': 'Freies Spielen und Workshops täglich verfügbar — komm und entdecke!',
+      'activities.act1.title': 'Malen',
+      'activities.act1.sub': 'Kreative Kunstworkshops für Kinder aller Altersgruppen',
+      'activities.act2.title': 'Kreativ-Workshops',
+      'activities.act2.sub': 'Basteln, Erfinden und Entdecken durch Spaß',
+      'activities.hoursLabel': '🌙 Freies Spielen — Öffnungszeiten',
+      'activities.hoursTime': 'Mo · Mi · Fr: 8:00 – 20:00 \u00a0·\u00a0 Di · Do: 8:00 – 18:00',
+      'contact.tag': 'Kontakt',
+      'contact.title': 'Einen Termin',
+      'contact.titleAccent': 'buchen',
+      'contact.sub': 'Kontaktieren Sie uns und wir organisieren gemeinsam die perfekte Feier für Ihr Kind!',
+      'contact.location': 'Adresse',
+      'contact.phone': 'Telefon / WhatsApp',
+      'contact.email': 'E-Mail',
+      'contact.hours': 'Öffnungszeiten',
+      'contact.hoursVal': 'Mo · Mi · Fr: 8:00–20:00 · Di · Do: 8:00–18:00',
+      'contact.formTitle': 'Buchungsanfrage senden',
+      'form.name': 'Vor- und Nachname',
+      'form.namePlaceholder': 'Ihr Vor- und Nachname',
+      'form.email': 'E-Mail-Adresse',
+      'form.phone': 'Telefonnummer',
+      'form.package': 'Gewünschtes Paket',
+      'form.packagePlaceholder': 'Paket wählen...',
+      'form.pkg1': 'Basic-Paket – 199 €',
+      'form.pkg2': 'Simple-Paket – 299 €',
+      'form.pkg3': 'Premium-Paket – 399 €',
+      'form.pkg4': 'Freies Spielen / Aktivitäten',
+      'form.message': 'Nachricht',
+      'form.messagePlaceholder': 'Datum, Anzahl der Kinder, gewünschtes Thema...',
+      'form.btnSend': '✦ Anfrage senden',
+      'form.sending': 'Wird gesendet…',
+      'form.successMsg': '✅ Ihre Anfrage wurde erfolgreich gesendet! Wir melden uns so bald wie möglich.',
+      'form.errorMsg': '❌ Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+      'footer.brandSub': 'Ein modernes Kinderspielzentrum in Samobor. Unvergessliche Feiern, Bildungsaktivitäten und freies Spielen in sicherer Umgebung.',
+      'footer.nav': 'Navigation',
+      'footer.packages': 'Pakete',
+      'footer.princessLink': 'Princess Party – auf Anfrage',
+      'footer.rights': 'Alle Rechte vorbehalten.',
+      'footer.madeWith': '✦ Mit Liebe gemacht für glückliche Kinder ✦',
+    }
+  };
+
+  let currentLang = 'hr';
+
+  function t(key) {
+    return (translations[currentLang] && translations[currentLang][key]) ||
+           (translations['hr'][key]) || key;
+  }
+
+  function applyTranslations() {
+    // Standard text content
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = t(key);
+      if (val !== undefined) el.innerHTML = val;
+    });
+
+    // Placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const val = t(key);
+      if (val !== undefined) el.placeholder = val;
+    });
+
+    // Update active lang button
+    ['hr','en','de'].forEach(lang => {
+      const btn = document.getElementById('btn-' + lang);
+      if (btn) btn.classList.toggle('active', lang === currentLang);
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = currentLang;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    try { localStorage.setItem('zz_lang', lang); } catch(e) {}
+    applyTranslations();
+  }
+
+  // Init: restore from localStorage or auto-detect
+  (function() {
+    let lang = 'hr';
+    try { lang = localStorage.getItem('zz_lang') || ''; } catch(e) {}
+    if (!lang) {
+      const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (nav.startsWith('en')) lang = 'en';
+      else if (nav.startsWith('de')) lang = 'de';
+      else lang = 'hr';
+    }
+    if (!translations[lang]) lang = 'hr';
+    currentLang = lang;
+    applyTranslations();
+  })();
   </script>
 </body>
 </html>
