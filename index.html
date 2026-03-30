@@ -1412,6 +1412,10 @@
         Facebook
       </a>
       <span data-i18n="footer.madeWith">✦ Napravljeno s ljubavlju za sretnu djecu ✦</span>
+      <span style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;transition:color .2s;" onmouseover="this.style.color='#f4a7c3'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Politika privatnosti</a>
+        <a href="cookie-policy.html" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;transition:color .2s;" onmouseover="this.style.color='#f4a7c3'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Politika kolačića</a>
+      </span>
     </div>
   </footer>
 
@@ -1925,6 +1929,114 @@
     currentLang = lang;
     applyTranslations();
   })();
+  </script>
+
+  <!-- ── COOKIE CONSENT POPUP ── -->
+  <div id="cookie-banner" style="display:none;" role="dialog" aria-live="polite" aria-label="Obavijest o kolačićima">
+    <p id="cookie-banner-text">
+      Koristimo kolačiće za poboljšanje iskustva. Prihvaćanjem pristajete na našu
+      <a href="cookie-policy.html">Politiku kolačića</a>.
+    </p>
+    <div id="cookie-banner-btns">
+      <button id="cookie-accept">Prihvati</button>
+      <button id="cookie-decline">Odbij</button>
+    </div>
+  </div>
+
+  <style>
+    #cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: #ffffff;
+      border: 1.5px solid #f4a7c3;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(74,53,96,0.14);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      max-width: min(680px, calc(100vw - 2rem));
+      width: 100%;
+      font-family: 'Nunito', sans-serif;
+    }
+    #cookie-banner-text {
+      font-size: 0.88rem;
+      color: #4a3560;
+      line-height: 1.6;
+      flex: 1 1 200px;
+      margin: 0;
+    }
+    #cookie-banner-text a {
+      color: #e07fa8;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(224,127,168,0.35);
+    }
+    #cookie-banner-text a:hover { border-color: #e07fa8; }
+    #cookie-banner-btns {
+      display: flex;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    #cookie-accept {
+      background: linear-gradient(135deg, #f4a7c3 0%, #c9b8e8 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      padding: 0.5rem 1.3rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(244,167,195,0.4);
+      transition: transform .15s, box-shadow .15s;
+    }
+    #cookie-accept:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,167,195,0.5); }
+    #cookie-decline {
+      background: transparent;
+      color: #8a7aa0;
+      border: 1.5px solid rgba(138,122,160,0.3);
+      border-radius: 50px;
+      padding: 0.5rem 1.1rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    #cookie-decline:hover { background: #fce4ef; color: #e07fa8; border-color: rgba(224,127,168,0.4); }
+    @media (max-width: 480px) {
+      #cookie-banner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      #cookie-banner-btns { width: 100%; }
+      #cookie-accept, #cookie-decline { flex: 1; text-align: center; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      try {
+        var consent = localStorage.getItem('zz_cookie_consent');
+        if (!consent) {
+          document.getElementById('cookie-banner').style.display = 'flex';
+        }
+      } catch(e) {
+        // localStorage not available — don't show banner
+      }
+
+      document.getElementById('cookie-accept').addEventListener('click', function() {
+        try { localStorage.setItem('zz_cookie_consent', 'accepted'); } catch(e) {}
+        document.getElementById('cookie-banner').style.display = 'none';
+      });
+
+      document.getElementById('cookie-decline').addEventListener('click', function() {
+        try { localStorage.setItem('zz_cookie_consent', 'declined'); } catch(e) {}
+        document.getElementById('cookie-banner').style.display = 'none';
+      });
+    })();
   </script>
 </body>
 </html>

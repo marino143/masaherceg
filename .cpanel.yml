@@ -4,5 +4,7 @@ deployment:
     - export DEPLOYPATH=/home/mashercom/public_html/
     - /bin/cp -r index.html $DEPLOYPATH
     - /bin/cp -r kontakt.php $DEPLOYPATH
+    - /bin/cp -r privacy-policy.html $DEPLOYPATH
+    - /bin/cp -r cookie-policy.html $DEPLOYPATH
     - /bin/cp -r favicon.svg $DEPLOYPATH
     - /bin/cp -r images $DEPLOYPATH

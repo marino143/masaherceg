@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politika kolačića – Zamisli Želju</title>
+  <meta name="description" content="Politika kolačića (cookies) igraonice Zamisli Želju. Saznajte koje kolačiće koristimo i zašto." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:       #f4a7c3;
+      --pink-deep:  #e07fa8;
+      --pink-light: #fce4ef;
+      --blue:       #a8d8ea;
+      --blue-deep:  #7bbcd4;
+      --blue-light: #dff0f8;
+      --lavender:   #c9b8e8;
+      --lav-light:  #ede5f9;
+      --gold:       #f7d794;
+      --gold-deep:  #e8b84b;
+      --cream:      #fff9fc;
+      --white:      #ffffff;
+      --text:       #4a3560;
+      --text-light: #8a7aa0;
+      --radius:     20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(255,249,252,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244,167,195,0.2);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--pink-deep);
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-logo .moon { font-style: normal; font-size: 1.1rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: var(--pink-light); color: var(--pink-deep); }
+
+    .btn-nav {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%) !important;
+      color: var(--white) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 16px rgba(244,167,195,0.4);
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,167,195,0.5) !important; }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      margin-right: 0.6rem;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: none;
+      border: 1.5px solid transparent;
+      border-radius: 50px;
+      padding: 0.3rem 0.6rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      line-height: 1;
+    }
+    .lang-btn:hover {
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      border-color: rgba(224,127,168,0.3);
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 2px 8px rgba(244,167,195,0.4);
+    }
+    .lang-sep {
+      color: rgba(122,96,112,0.3);
+      font-size: 0.75rem;
+      user-select: none;
+    }
+    @media (max-width: 640px) {
+      .lang-switcher { margin-right: 0.3rem; }
+      .lang-btn { padding: 0.28rem 0.5rem; font-size: 0.72rem; }
+      .nav-links { display: none; }
+    }
+
+    /* ── PAGE CONTENT ── */
+    .page-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 110px 5% 5rem;
+    }
+
+    .page-tag {
+      display: inline-block;
+      background: var(--pink-light);
+      color: var(--pink-deep);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title span {
+      color: var(--pink-deep);
+      font-style: italic;
+    }
+
+    .page-meta {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(244,167,195,0.25);
+    }
+
+    .policy-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .policy-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--pink-light);
+    }
+
+    .policy-section p {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      line-height: 1.75;
+    }
+
+    .policy-section ul {
+      padding-left: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .policy-section ul li {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.75;
+    }
+
+    .policy-section a {
+      color: var(--pink-deep);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(224,127,168,0.3);
+      transition: border-color .2s;
+    }
+    .policy-section a:hover { border-color: var(--pink-deep); }
+
+    .info-box {
+      background: var(--pink-light);
+      border-left: 4px solid var(--pink-deep);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Cookie table */
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+    }
+    .cookie-table th {
+      background: var(--pink-light);
+      color: var(--text);
+      font-weight: 700;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cookie-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid rgba(244,167,195,0.2);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .cookie-table tr:last-child td {
+      border-bottom: none;
+    }
+    .cookie-table tr:nth-child(even) td {
+      background: rgba(252,228,239,0.15);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.6);
+      padding: 3.5rem 5% 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆ ✦ 🌙 ✦ ⋆';
+      position: absolute;
+      top: 1rem; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 0.75rem;
+      opacity: 0.15;
+      letter-spacing: 0.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--pink);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+
+    .footer-col h4 { color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--pink); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color .2s;
+    }
+    .footer-legal-links a:hover { color: var(--pink); }
+
+    @media (max-width: 960px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="moon">🌙</span> Zamisli Želju
+    </a>
+    <div class="lang-switcher">
+      <button class="lang-btn active">HR</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn">DE</button>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#about">O nama</a></li>
+      <li><a href="index.html#services">Ponude</a></li>
+      <li><a href="index.html#paketi">Paketi</a></li>
+      <li><a href="index.html#aktivnosti">Aktivnosti</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li><a href="index.html#kontakt" class="btn-nav">Rezerviraj odmah</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-wrap">
+    <span class="page-tag">Pravni dokumenti</span>
+    <h1 class="page-title">Politika <span>kolačića</span></h1>
+    <p class="page-meta">
+      Zadnje ažuriranje: travanj 2026 &nbsp;·&nbsp;
+      Dostupno na: <strong>HR</strong> / EN / DE (uskoro)
+    </p>
+
+    <div class="info-box">
+      Koristimo samo neophodne kolačiće koji su potrebni za ispravno funkcioniranje web stranice. Ne koristimo kolačiće za praćenje posjetitelja niti za oglašavanje.
+    </div>
+
+    <div class="policy-section">
+      <h2>1. Što su kolačići?</h2>
+      <p>Kolačići (eng. cookies) su male tekstualne datoteke koje web stranica sprema u vaš preglednik. Koriste se za pamćenje vaših postavki i preferencija kako biste svaki put imali bolje iskustvo.</p>
+      <p>Kolačići ne mogu pokrenuti programe niti prenositi viruse. Ne mogu pristupiti vašim osobnim datotekama na računalu.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. Koje kolačiće koristimo?</h2>
+      <p>Naša web stranica koristi isključivo funkcionalne pohrane u vašem pregledniku, bez kolačića za praćenje ili oglašavanje:</p>
+
+      <table class="cookie-table">
+        <thead>
+          <tr>
+            <th>Naziv</th>
+            <th>Vrsta</th>
+            <th>Svrha</th>
+            <th>Trajanje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>zz_lang</code></td>
+            <td>localStorage</td>
+            <td>Pamti odabranu jezičnu postavku (HR / EN / DE) kako biste svaki put vidjeli stranicu na željenom jeziku</td>
+            <td>Trajno (do brisanja)</td>
+          </tr>
+          <tr>
+            <td><code>zz_cookie_consent</code></td>
+            <td>localStorage</td>
+            <td>Pamti vašu odluku o kolačićima (prihvaćeno / odbijeno) kako banner više ne bi iskakao</td>
+            <td>Trajno (do brisanja)</td>
+          </tr>
+          <tr>
+            <td>Web3Forms</td>
+            <td>Funkcionalni</td>
+            <td>Servis za slanje kontakt forme. Vaši podaci se prosljeđuju na naš e-mail. Web3Forms može koristiti sesijske kolačiće za zaštitu od spama (anti-bot zaštita)</td>
+            <td>Sesija (brišu se po zatvaranju preglednika)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Napomena: <em>localStorage</em> je lokalna pohrana preglednika, tehnički drugačija od klasičnih kolačića, ali podliježe istim pravilima zaštite privatnosti.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Što NE koristimo</h2>
+      <p>Kako bismo bili potpuno transparentni, izričito napominjemo da naša web stranica <strong>ne koristi</strong>:</p>
+      <ul>
+        <li>Google Analytics ni bilo koji drugi alat za analitiku posjetitelja</li>
+        <li>Facebook Pixel ni Meta Ads praćenje</li>
+        <li>Reklamne mreže ili remarketing kolačiće</li>
+        <li>Kolačiće za profiliranje korisnika</li>
+        <li>Kolačiće trećih strana za praćenje (tracking)</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. Upravljanje kolačićima</h2>
+      <p>Možete upravljati kolačićima i lokalnom pohranom izravno u svom pregledniku:</p>
+      <ul>
+        <li><strong>Chrome:</strong> Postavke → Privatnost i sigurnost → Kolačići i drugi podaci stranica</li>
+        <li><strong>Firefox:</strong> Postavke → Privatnost i zaštita → Kolačići i podaci stranica</li>
+        <li><strong>Safari:</strong> Postavke → Privatnost → Upravljanje podacima web stranica</li>
+        <li><strong>Edge:</strong> Postavke → Kolačići i dozvole stranice</li>
+      </ul>
+      <p>Imajte na umu da brisanje localStorage podataka znači da ćete pri sljedećem posjetu ponovno vidjeti banner za kolačiće i morati odabrati jezik.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. Izmjene politike kolačića</h2>
+      <p>Ako promijenimo kolačiće koje koristimo, ažurirat ćemo ovaj dokument i datum zadnjeg ažuriranja na vrhu stranice. Preporučujemo da povremeno provjerite ovu stranicu.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. Više informacija</h2>
+      <p>Za više informacija o tome kako obrađujemo vaše osobne podatke, pogledajte našu <a href="privacy-policy.html">Politiku privatnosti</a>.</p>
+      <p>Za sva pitanja, slobodno nas kontaktirajte na: <a href="mailto:hercegmasa7@gmail.com">hercegmasa7@gmail.com</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">🌙 Zamisli Želju</a>
+        <p>Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="index.html#about">O nama</a></li>
+          <li><a href="index.html#services">Ponude</a></li>
+          <li><a href="index.html#paketi">Paketi</a></li>
+          <li><a href="index.html#aktivnosti">Aktivnosti</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Paketi</h4>
+        <ul>
+          <li><a href="index.html#paketi">Basic – 199 €</a></li>
+          <li><a href="index.html#paketi">Simple – 299 €</a></li>
+          <li><a href="index.html#paketi">Premium – 399 €</a></li>
+          <li><a href="index.html#paketi">Princess Party – na upit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <a href="https://codigit.hr" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Co Digit</a>. Sva prava pridržana.</span>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Politika privatnosti</a>
+        <a href="cookie-policy.html">Politika kolačića</a>
+      </div>
+      <span>✦ Napravljeno s ljubavlju za sretnu djecu ✦</span>
+    </div>
+  </footer>
+
+</body>
+</html>
