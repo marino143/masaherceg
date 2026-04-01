@@ -2010,22 +2010,37 @@
     }
     #cookie-decline:hover { background: #fce4ef; color: #e07fa8; border-color: rgba(224,127,168,0.4); }
     @media (max-width: 480px) {
-      #cookie-banner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-      #cookie-banner-btns { width: 100%; }
-      #cookie-accept, #cookie-decline { flex: 1; text-align: center; }
+      #cookie-banner { flex-direction: row; align-items: center; gap: 0.7rem; padding: 0.75rem 1rem; flex-wrap: nowrap; }
+      #cookie-banner-text { font-size: 0.78rem; line-height: 1.4; flex: 1 1 0; }
+      #cookie-banner-btns { display: flex; flex-direction: column; gap: 0.4rem; flex-shrink: 0; }
+      #cookie-accept, #cookie-decline { padding: 0.4rem 0.9rem; font-size: 0.78rem; white-space: nowrap; }
     }
   </style>
 
   <script>
     (function() {
+      var cookieTexts = {
+        hr: { text: 'Koristimo kolačiće za poboljšanje iskustva. Prihvaćanjem pristajete na našu ', link: 'Politiku kolačića', accept: 'Prihvati', decline: 'Odbij' },
+        en: { text: 'We use cookies to improve your experience. By accepting, you agree to our ', link: 'Cookie Policy', accept: 'Accept', decline: 'Decline' },
+        de: { text: 'Wir verwenden Cookies zur Verbesserung Ihrer Erfahrung. Mit der Annahme stimmen Sie unserer ', link: 'Cookie-Richtlinie', accept: 'Akzeptieren', decline: 'Ablehnen' }
+      };
+
+      function updateCookieBanner() {
+        var lang = (localStorage.getItem('zz_lang') || navigator.language || 'hr').substring(0, 2).toLowerCase();
+        if (!cookieTexts[lang]) lang = 'hr';
+        var t = cookieTexts[lang];
+        document.getElementById('cookie-banner-text').innerHTML = t.text + '<a href="cookie-policy.html">' + t.link + '</a>.';
+        document.getElementById('cookie-accept').textContent = t.accept;
+        document.getElementById('cookie-decline').textContent = t.decline;
+      }
+
       try {
         var consent = localStorage.getItem('zz_cookie_consent');
         if (!consent) {
+          updateCookieBanner();
           document.getElementById('cookie-banner').style.display = 'flex';
         }
-      } catch(e) {
-        // localStorage not available — don't show banner
-      }
+      } catch(e) {}
 
       document.getElementById('cookie-accept').addEventListener('click', function() {
         try { localStorage.setItem('zz_cookie_consent', 'accepted'); } catch(e) {}
@@ -2036,6 +2051,9 @@
         try { localStorage.setItem('zz_cookie_consent', 'declined'); } catch(e) {}
         document.getElementById('cookie-banner').style.display = 'none';
       });
+
+      // Re-translate if language switcher changes the lang
+      document.addEventListener('zz:langchange', updateCookieBanner);
     })();
   </script>
 </body>
