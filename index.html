@@ -1907,6 +1907,9 @@
 
     // Update html lang attribute
     document.documentElement.lang = currentLang;
+
+    // Notify cookie banner to re-translate
+    document.dispatchEvent(new CustomEvent('zz:langchange'));
   }
 
   function setLang(lang) {
