@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+
+  <url>
+    <loc>https://zamislizelju.hr/</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://zamislizelju.hr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zamislizelju.hr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://zamislizelju.hr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zamislizelju.hr/" />
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7303.jpg</image:loc>
+      <image:title>Zamisli Želju – dječja igraonica i rođendaonica u Samoboru</image:title>
+      <image:caption>Moderna dječja igraonica u Samoboru za nezaboravne rođendanske proslave</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7252.jpg</image:loc>
+      <image:title>Prostor igraonice Zamisli Želju u Samoboru</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7291.jpg</image:loc>
+      <image:title>Rođendanske proslave u Samoboru</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7261.jpg</image:loc>
+      <image:title>Edukativne aktivnosti za djecu u Samoboru</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7257.jpg</image:loc>
+      <image:title>Slobodna igra u igraonici Zamisli Želju</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7262.jpg</image:loc>
+      <image:title>Edukativne igračke u igraonici Samobor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7268.jpg</image:loc>
+      <image:title>Igračke u dječjoj igraonici Samobor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7293.jpg</image:loc>
+      <image:title>Kreativne radionice za djecu u Samoboru</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7294.jpg</image:loc>
+      <image:title>Dječja igraonica u Samoboru</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/_MG_7295.jpg</image:loc>
+      <image:title>Šator za igru u igraonici Zamisli Želju</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/nova-1.jpeg</image:loc>
+      <image:title>Dječje igračke u igraonici Samobor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/nova-2.jpeg</image:loc>
+      <image:title>Društvene igre za djecu u igraonici Samobor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/nova-3.jpeg</image:loc>
+      <image:title>Dječja kuhinja u igraonici Zamisli Želju</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/igra-vanjska-1.jpeg</image:loc>
+      <image:title>Vanjska igra i Lego u igraonici Samobor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://zamislizelju.hr/images/igra-vanjska-2.jpeg</image:loc>
+      <image:title>Vanjske aktivnosti za djecu u Samoboru</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zamislizelju.hr/privacy-policy.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://zamislizelju.hr/cookie-policy.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
