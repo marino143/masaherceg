@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://masaherceg.com/sitemap.xml

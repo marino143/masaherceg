@@ -8,3 +8,5 @@ deployment:
     - /bin/cp -r cookie-policy.html $DEPLOYPATH
     - /bin/cp -r favicon.svg $DEPLOYPATH
     - /bin/cp -r images $DEPLOYPATH
+    - /bin/cp -r sitemap.xml $DEPLOYPATH
+    - /bin/cp -r robots.txt $DEPLOYPATH
