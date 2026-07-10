@@ -9,6 +9,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-M55TG7QPF0');
+    gtag('config', 'AW-18310966650');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zamisli Želju – Dječja Igraonica Samobor | Proslave i Radionice</title>
@@ -1421,6 +1422,9 @@
                 if (data.success) {
                   var successMsg = (typeof t === 'function') ? t('form.successMsg') : '✅ Upit je uspješno poslan! Javit ćemo se što prije.';
                   status.innerHTML = '<div style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + successMsg + '</div>';
+                  if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { event_category: 'contact', event_label: 'rezervacija' });
+                  }
                   this.reset();
                 } else {
                   var errorMsg = (typeof t === 'function') ? t('form.errorMsg') : '❌ Došlo je do greške. Pokušaj ponovno.';
