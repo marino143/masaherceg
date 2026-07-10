@@ -1424,6 +1424,7 @@
                   status.innerHTML = '<div style="background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + successMsg + '</div>';
                   if (typeof gtag === 'function') {
                     gtag('event', 'generate_lead', { event_category: 'contact', event_label: 'rezervacija' });
+                    gtag('event', 'conversion', { 'send_to': 'AW-18310966650/VTc5CMr8xc0cEPrarJtE', 'value': 1.0, 'currency': 'EUR' });
                   }
                   this.reset();
                 } else {
