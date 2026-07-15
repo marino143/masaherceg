@@ -1376,6 +1376,7 @@
           <form id="kontaktForm">
             <input type="hidden" name="access_key" value="05d21ece-27d1-4825-9b63-dc480e0fefbf" />
             <input type="hidden" name="subject" value="Nova rezervacija — Zamisli Želju" />
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true" />
             <div class="form-group">
               <label data-i18n="form.name">Ime i prezime</label>
               <input type="text" name="ime" placeholder="Vaše ime i prezime" data-i18n-placeholder="form.namePlaceholder" required />
@@ -1411,6 +1412,14 @@
               var status = document.getElementById('form-status');
               var sendingTxt = (typeof t === 'function') ? t('form.sending') : 'Slanje…';
               var sendBtnTxt = (typeof t === 'function') ? t('form.btnSend') : '✦ Pošalji upit';
+              var emailVal = (this.elements['email'].value || '').trim();
+              var telVal = (this.elements['telefon'].value || '').trim();
+              if (!emailVal && !telVal) {
+                var contactMsg = (typeof t === 'function') ? t('form.contactRequired') : '📞 Molimo unesite email ili broj telefona kako bismo Vas mogli kontaktirati.';
+                status.innerHTML = '<div style="background:#fff3cd;color:#856404;border:1px solid #ffeeba;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-weight:600;">' + contactMsg + '</div>';
+                document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+                return;
+              }
               btn.textContent = sendingTxt;
               btn.disabled = true;
               try {
@@ -1647,6 +1656,7 @@
       'form.sending': 'Slanje…',
       'form.successMsg': '✅ Upit je uspješno poslan! Javit ćemo se što prije.',
       'form.errorMsg': '❌ Došlo je do greške. Pokušaj ponovno.',
+      'form.contactRequired': '📞 Molimo unesite email ili broj telefona kako bismo Vas mogli kontaktirati.',
       'footer.brandSub': 'Moderna dječja igraonica u Samoboru. Nezaboravne proslave, edukativne aktivnosti i slobodna igra u sigurnom okruženju.',
       'footer.nav': 'Navigacija',
       'footer.packages': 'Paketi',
@@ -1793,6 +1803,7 @@
       'form.sending': 'Sending…',
       'form.successMsg': '✅ Your enquiry was sent successfully! We will get back to you shortly.',
       'form.errorMsg': '❌ An error occurred. Please try again.',
+      'form.contactRequired': '📞 Please enter an email or phone number so we can contact you.',
       'footer.brandSub': 'A modern children\'s play centre in Samobor. Unforgettable parties, educational activities and free play in a safe environment.',
       'footer.nav': 'Navigation',
       'footer.packages': 'Packages',
@@ -1939,6 +1950,7 @@
       'form.sending': 'Wird gesendet…',
       'form.successMsg': '✅ Ihre Anfrage wurde erfolgreich gesendet! Wir melden uns so bald wie möglich.',
       'form.errorMsg': '❌ Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+      'form.contactRequired': '📞 Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an, damit wir Sie kontaktieren können.',
       'footer.brandSub': 'Ein modernes Kinderspielzentrum in Samobor. Unvergessliche Feiern, Bildungsaktivitäten und freies Spielen in sicherer Umgebung.',
       'footer.nav': 'Navigation',
       'footer.packages': 'Pakete',
