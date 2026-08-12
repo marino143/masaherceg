@@ -164,6 +164,78 @@
     }
     .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,167,195,0.5) !important; }
 
+    /* ── POZIV / WHATSAPP CTA ── */
+    .nav-call {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1.5px solid var(--pink);
+      color: var(--pink-deep) !important;
+      font-weight: 800 !important;
+    }
+    .nav-call:hover { background: var(--pink-light) !important; color: var(--pink-deep) !important; }
+
+    /* kompaktni gumb za poziv u navbaru na mobitelu */
+    .nav-call-mobile {
+      display: none;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+      box-shadow: 0 4px 14px rgba(244,167,195,0.45);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* lijepljena traka na dnu ekrana (mobitel) */
+    .mobile-cta-bar {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 1200;
+      gap: 0.6rem;
+      padding: 0.6rem 0.8rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
+      background: rgba(255,249,252,0.97);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(244,167,195,0.35);
+      box-shadow: 0 -4px 20px rgba(122,96,112,0.10);
+    }
+    .mobile-cta-bar a {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.85rem 0.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .cta-call {
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+      box-shadow: 0 4px 16px rgba(244,167,195,0.45);
+    }
+    .cta-wa {
+      color: #fff;
+      background: #25D366;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    }
+
+    @media (max-width: 768px) {
+      .mobile-cta-bar { display: flex; }
+      body { padding-bottom: 78px; }
+    }
+
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -956,6 +1028,11 @@
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .nav-call-mobile { display: inline-flex; }
+      .nav-logo { font-size: 1.2rem; }
+      .lang-switcher { margin-right: 0.3rem; }
+      .lang-btn { padding: 0.28rem 0.42rem; font-size: 0.72rem; }
+      nav { padding: 0 3.5%; }
       .activities-grid { grid-template-columns: 1fr 1fr; }
       .deco-moon-large, .deco-moon-small { display: none; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -1018,15 +1095,23 @@
       <span class="lang-sep">|</span>
       <button class="lang-btn" onclick="setLang('de')" id="btn-de">DE</button>
     </div>
+    <a href="tel:+385912000316" class="nav-call-mobile" onclick="trackContact('phone_nav_mobile')" aria-label="Nazovi Zamisli Želju">📞 <span data-i18n="cta.call">Nazovi</span></a>
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav.about">O nama</a></li>
       <li><a href="#services" data-i18n="nav.services">Ponude</a></li>
       <li><a href="#paketi" data-i18n="nav.packages">Paketi</a></li>
       <li><a href="#aktivnosti" data-i18n="nav.activities">Aktivnosti</a></li>
       <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
+      <li><a href="tel:+385912000316" class="nav-call" onclick="trackContact('phone_nav')">📞 091 200 0316</a></li>
       <li><a href="#kontakt" class="btn-nav" data-i18n="nav.reserve">Rezerviraj odmah</a></li>
     </ul>
   </nav>
+
+  <!-- LIJEPLJENA CTA TRAKA (mobitel) -->
+  <div class="mobile-cta-bar">
+    <a href="tel:+385912000316" class="cta-call" onclick="trackContact('phone_sticky')">📞 <span data-i18n="cta.call">Nazovi</span></a>
+    <a href="https://wa.me/385912000316" class="cta-wa" target="_blank" rel="noopener" onclick="trackContact('whatsapp_sticky')">💬 WhatsApp</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -1524,6 +1609,7 @@
       'nav.activities': 'Aktivnosti',
       'nav.contact': 'Kontakt',
       'nav.reserve': 'Rezerviraj odmah',
+      'cta.call': 'Nazovi',
       'hero.badge': 'Dječja Igraonica · Samobor',
       'hero.h1line1': 'Mjesto gdje',
       'hero.h1line2': 'dječje želje',
@@ -1671,6 +1757,7 @@
       'nav.activities': 'Activities',
       'nav.contact': 'Contact',
       'nav.reserve': 'Book now',
+      'cta.call': 'Call us',
       'hero.badge': 'Children\'s Play Centre · Samobor',
       'hero.h1line1': 'The place where',
       'hero.h1line2': 'children\'s wishes',
@@ -1818,6 +1905,7 @@
       'nav.activities': 'Aktivitäten',
       'nav.contact': 'Kontakt',
       'nav.reserve': 'Jetzt buchen',
+      'cta.call': 'Anrufen',
       'hero.badge': 'Kinderspielzentrum · Samobor',
       'hero.h1line1': 'Der Ort, wo',
       'hero.h1line2': 'Kinderwünsche',
@@ -1961,6 +2049,16 @@
   };
 
   let currentLang = 'hr';
+
+  // Bilježi klik na poziv / WhatsApp kao GA4 dogadaj (metoda: phone_nav, phone_sticky, whatsapp_sticky...)
+  function trackContact(method) {
+    try {
+      if (typeof gtag === 'function') {
+        gtag('event', 'contact_click', { event_category: 'contact', event_label: method });
+      }
+    } catch (e) {}
+    return true;
+  }
 
   function t(key) {
     return (translations[currentLang] && translations[currentLang][key]) ||
