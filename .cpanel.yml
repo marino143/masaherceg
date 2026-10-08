@@ -10,3 +10,4 @@ deployment:
     - /bin/cp -r images $DEPLOYPATH
     - /bin/cp -r sitemap.xml $DEPLOYPATH
     - /bin/cp -r robots.txt $DEPLOYPATH
+    - /bin/cp -r cjenik $DEPLOYPATH

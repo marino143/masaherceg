@@ -743,6 +743,13 @@
     }
     .pkg-card.featured .pkg-price { color: var(--white); }
 
+    /* Reference prices use existing typography and explicit contrast for readability. */
+    .anchor-price { font-size: 0.85rem; line-height: 1.5; color: #514552; margin: 0.5rem 0; }
+    .pkg-card.featured .anchor-price { color: #382138; }
+    .price-disclosure { color: #514552; font-size: 0.9rem; line-height: 1.6; margin-top: 1.5rem; }
+    .price-disclosure a { color: #73324f; text-decoration: underline; display: inline-block; padding: 0.65rem 0; }
+    .price-disclosure a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
     .pkg-dur {
       font-size: 0.82rem;
       color: var(--text-light);
@@ -1304,6 +1311,7 @@
         <div class="pkg-card">
           <div class="pkg-label" data-i18n="pkg.basic.label">Basic paket</div>
           <div class="pkg-price">199 €</div>
+          <p class="anchor-price"><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 199 €</p>
           <div class="pkg-dur" data-i18n="pkg.basic.dur">2 sata · sve uključeno</div>
           <ul class="pkg-list">
             <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
@@ -1314,6 +1322,7 @@
             <li data-i18n="pkg.feature.gifts">Poklon za slavljenika i sve uzvanike</li>
             <li data-i18n="pkg.feature.photos">Profesionalne fotografije</li>
           </ul>
+          <p class="anchor-price"><span data-i18n="pricing.cakeAnchor">Sidrena cijena doplate za tortu (10. 9. 2026.):</span> 25 €</p>
           <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.5rem;" data-i18n="pkg.basic.cakeNote">🎂 Torta se može dodati za <strong style="color:var(--pink-deep)">+25 €</strong></p>
           <a href="#kontakt" class="btn-pkg" style="margin-top:1rem;" data-i18n="pkg.btnReserve">Rezerviraj</a>
         </div>
@@ -1322,6 +1331,7 @@
           <div class="pkg-popular">🌟 <span data-i18n="pkg.popular">Najpopularniji</span></div>
           <div class="pkg-label" data-i18n="pkg.simple.label">Simple paket</div>
           <div class="pkg-price">299 €</div>
+          <p class="anchor-price"><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 299 €</p>
           <div class="pkg-dur" data-i18n="pkg.simple.dur">2 sata · sve uključeno</div>
           <ul class="pkg-list">
             <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
@@ -1339,6 +1349,7 @@
         <div class="pkg-card">
           <div class="pkg-label" data-i18n="pkg.premium.label">Premium paket</div>
           <div class="pkg-price">399 €</div>
+          <p class="anchor-price"><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 399 €</p>
           <div class="pkg-dur" data-i18n="pkg.premium.dur">2 sata · tematska proslava</div>
           <ul class="pkg-list">
             <li data-i18n="pkg.feature.animators">Vodstvo stručnih animatora i odgojitelja</li>
@@ -1381,6 +1392,10 @@
           <a href="#kontakt" class="btn-pkg" data-i18n="pkg.princess.btnInquire">Upitaj za cijenu</a>
         </div>
 
+      </div>
+      <div class="price-disclosure">
+        <p data-i18n="pricing.explanation">Sidrena cijena je cijena usluge koja je vrijedila 10. rujna 2026. Sidrena cijena doplate za tortu uz Basic paket iznosi 25 €. Sve navedene cijene izražene su u eurima.</p>
+        <a href="cjenik/Djecja_igraonica_Vlahe_Bukovca_20_Samobor_Zamisli_Zelju_1_20261008_1011.csv" download data-i18n="pricing.download">Preuzmi cjenik usluga (CSV)</a>
       </div>
       <p class="pkg-note" data-i18n="packages.note">🎂 Torta se može dodati uz Basic paket za <strong>+25 €</strong> · 🎨 Dostupno još mnogo tema za proslave — <strong>kontaktiraj nas!</strong></p>
     </div>
@@ -1478,9 +1493,9 @@
               <label data-i18n="form.package">Željeni paket</label>
               <select name="paket">
                 <option value="" data-i18n="form.packagePlaceholder">Odaberi paket...</option>
-                <option data-i18n="form.pkg1">Basic paket – 199 €</option>
-                <option data-i18n="form.pkg2">Simple paket – 299 €</option>
-                <option data-i18n="form.pkg3">Premium paket – 399 €</option>
+                <option data-i18n="form.pkg1">Basic paket</option>
+                <option data-i18n="form.pkg2">Simple paket</option>
+                <option data-i18n="form.pkg3">Premium paket</option>
                 <option data-i18n="form.pkg4">Slobodna igra / aktivnosti</option>
               </select>
             </div>
@@ -1559,9 +1574,9 @@
       <div class="footer-col">
         <h4 data-i18n="footer.packages">Paketi</h4>
         <ul>
-          <li><a href="#paketi">Basic – 199 €</a></li>
-          <li><a href="#paketi">Simple – 299 €</a></li>
-          <li><a href="#paketi">Premium – 399 €</a></li>
+          <li><a href="#paketi">Basic – 199 €<br><small><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 199 €</small></a></li>
+          <li><a href="#paketi">Simple – 299 €<br><small><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 299 €</small></a></li>
+          <li><a href="#paketi">Premium – 399 €<br><small><span data-i18n="pricing.anchor">Sidrena cijena (10. 9. 2026.):</span> 399 €</small></a></li>
           <li><a href="#paketi" data-i18n="footer.princessLink">Princess Party – na upit</a></li>
         </ul>
       </div>
@@ -1603,6 +1618,10 @@
   <script>
   const translations = {
     hr: {
+      'pricing.anchor': 'Sidrena cijena (10. 9. 2026.):',
+      'pricing.cakeAnchor': 'Sidrena cijena doplate za tortu (10. 9. 2026.):',
+      'pricing.explanation': 'Sidrena cijena je cijena usluge koja je vrijedila 10. rujna 2026. Sidrena cijena doplate za tortu uz Basic paket iznosi 25 €. Sve navedene cijene izražene su u eurima.',
+      'pricing.download': 'Preuzmi cjenik usluga (CSV)',
       'nav.about': 'O nama',
       'nav.services': 'Ponude',
       'nav.packages': 'Paketi',
@@ -1732,9 +1751,9 @@
       'form.phone': 'Broj telefona',
       'form.package': 'Željeni paket',
       'form.packagePlaceholder': 'Odaberi paket...',
-      'form.pkg1': 'Basic paket – 199 €',
-      'form.pkg2': 'Simple paket – 299 €',
-      'form.pkg3': 'Premium paket – 399 €',
+      'form.pkg1': 'Basic paket',
+      'form.pkg2': 'Simple paket',
+      'form.pkg3': 'Premium paket',
       'form.pkg4': 'Slobodna igra / aktivnosti',
       'form.message': 'Poruka',
       'form.messagePlaceholder': 'Datum, broj djece, željena tema...',
@@ -1751,6 +1770,10 @@
       'footer.madeWith': '✦ Napravljeno s ljubavlju za sretnu djecu ✦',
     },
     en: {
+      'pricing.anchor': 'Reference price (10 September 2026):',
+      'pricing.cakeAnchor': 'Cake supplement reference price (10 September 2026):',
+      'pricing.explanation': 'The reference price is the price applicable on 10 September 2026. The reference price for the Basic package cake supplement is €25. All prices are in euros.',
+      'pricing.download': 'Download service price list (CSV)',
       'nav.about': 'About us',
       'nav.services': 'Services',
       'nav.packages': 'Packages',
@@ -1880,9 +1903,9 @@
       'form.phone': 'Phone number',
       'form.package': 'Desired package',
       'form.packagePlaceholder': 'Choose a package...',
-      'form.pkg1': 'Basic package – 199 €',
-      'form.pkg2': 'Simple package – 299 €',
-      'form.pkg3': 'Premium package – 399 €',
+      'form.pkg1': 'Basic package',
+      'form.pkg2': 'Simple package',
+      'form.pkg3': 'Premium package',
       'form.pkg4': 'Free play / activities',
       'form.message': 'Message',
       'form.messagePlaceholder': 'Date, number of children, desired theme...',
@@ -1899,6 +1922,10 @@
       'footer.madeWith': '✦ Made with love for happy children ✦',
     },
     de: {
+      'pricing.anchor': 'Referenzpreis (10. September 2026):',
+      'pricing.cakeAnchor': 'Referenzpreis für den Tortenzuschlag (10. September 2026):',
+      'pricing.explanation': 'Der Referenzpreis ist der am 10. September 2026 geltende Preis. Der Referenzpreis für den Tortenzuschlag zum Basic-Paket beträgt 25 €. Alle Preise sind in Euro angegeben.',
+      'pricing.download': 'Preisliste herunterladen (CSV)',
       'nav.about': 'Über uns',
       'nav.services': 'Angebote',
       'nav.packages': 'Pakete',
@@ -2028,9 +2055,9 @@
       'form.phone': 'Telefonnummer',
       'form.package': 'Gewünschtes Paket',
       'form.packagePlaceholder': 'Paket wählen...',
-      'form.pkg1': 'Basic-Paket – 199 €',
-      'form.pkg2': 'Simple-Paket – 299 €',
-      'form.pkg3': 'Premium-Paket – 399 €',
+      'form.pkg1': 'Basic-Paket',
+      'form.pkg2': 'Simple-Paket',
+      'form.pkg3': 'Premium-Paket',
       'form.pkg4': 'Freies Spielen / Aktivitäten',
       'form.message': 'Nachricht',
       'form.messagePlaceholder': 'Datum, Anzahl der Kinder, gewünschtes Thema...',
